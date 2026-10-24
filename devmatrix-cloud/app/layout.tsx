@@ -17,8 +17,8 @@ const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-jakart
 export const metadata: Metadata = {
   metadataBase: new URL('https://devmetrix.in'),
   title: {
-    default: 'DevMetrix.cloud - Free Developer Tools & Utilities',
-    template: '%s | DevMetrix.cloud',
+    default: 'Devmetrix.in - Free Developer Tools & Utilities',
+    template: '%s | Devmetrix.in',
   },
   description:
     'Free online developer tools including JSON formatter, API tester, JWT decoder, regex playground, and more. No signup required. Privacy-focused tools for developers.',
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
     'uml diagram creator', 'free uml diagram', 'free class diagram creator', 'toon-data-format',
   ],
   authors: [{ name: 'DevMetrix Team' }],
-  creator: 'DevMetrix.cloud',
-  publisher: 'DevMetrix.cloud',
+  creator: 'Devmetrix.in',
+  publisher: 'Devmetrix.in',
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -55,14 +55,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://devmetrix.in',
-    siteName: 'DevMetrix.cloud',
-    title: 'DevMetrix.cloud - Free Developer Tools & Learning Resources',
+    siteName: 'Devmetrix.in',
+    title: 'Devmetrix.in - Free Developer Tools & Learning Resources',
     description: 'Free developer tools, code examples, cheat sheets, and tutorials. Everything developers need in one place.',
-    images: [{ url: '/apple-touch-icon.png', width: 1200, height: 630, alt: 'DevMetrix.cloud - Developer Tools & Resources' }],
+    images: [{ url: '/apple-touch-icon.png', width: 1200, height: 630, alt: 'Devmetrix.in - Developer Tools & Resources' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DevMetrix.cloud - Free Developer Tools',
+    title: 'Devmetrix.in - Free Developer Tools',
     description: 'Free online developer tools. No signup required.',
     images: ['/twitter-image.png'],
     creator: '@DevMetrix',
@@ -122,7 +122,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Organization',
-              name: 'DevMetrix.cloud',
+              name: 'Devmetrix.in',
               url: 'https://devmetrix.in',
               logo: 'https://devmetrix.in/icon.png',
               sameAs: ['https://twitter.com/DevMetrix', 'https://github.com/DevMetrix'],

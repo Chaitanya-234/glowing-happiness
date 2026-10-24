@@ -1,12 +1,12 @@
+import { BlogPost, getAllPosts } from '@/lib/blog-data';
+import clientPromise from '@/lib/mongodb';
+import { Loader2 } from 'lucide-react';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import BlogClient from './BlogClient';
-import { Loader2 } from 'lucide-react';
-import clientPromise from '@/lib/mongodb';
-import { BlogPost, getAllPosts } from '@/lib/blog-data';
 
 export const metadata: Metadata = {
-  title: 'Developer Blog - Tutorials & Guides | DevMetrix.cloud',
+  title: 'Developer Blog - Tutorials & Guides | Devmetrix.in',
   description: 'Learn web development, JavaScript, APIs, and more with our comprehensive tutorials and guides for developers.',
   keywords: ['web development', 'tutorials', 'programming', 'javascript', 'api', 'developer guides'],
 };

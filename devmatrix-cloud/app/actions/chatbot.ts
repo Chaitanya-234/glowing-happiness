@@ -1,7 +1,7 @@
 'use server';
 
-import { GoogleGenerativeAI } from '@google/generative-ai';
 import { tools } from '@/lib/tools-data';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import fs from 'fs';
 import path from 'path';
 
@@ -52,7 +52,7 @@ async function getSiteContext() {
   const toolsList = tools.map(t => `- ${t.name}: ${t.description} (${t.link})`).join('\n');
 
   cachedSiteContext = `
-Here is the complete knowledge base of DevMetrix.cloud content:
+Here is the complete knowledge base of Devmetrix.in content:
 
 ## Tools (Utilities)
 ${toolsList}
@@ -165,7 +165,7 @@ export async function chatWithDevBot(history: ChatMessage[], message: string, cu
   const context = await getSiteContext();
   
   const systemInstruction = `
-You are DevBot, the intelligent, friendly, and Gen-Z savvy assistant for DevMetrix.cloud.
+You are DevBot, the intelligent, friendly, and Gen-Z savvy assistant for Devmetrix.in.
 Your goal is to help users navigate the site, find tools, read blogs, and understand features.
 
 **Tone & Style:**

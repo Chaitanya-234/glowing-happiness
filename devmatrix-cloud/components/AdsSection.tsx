@@ -1,7 +1,7 @@
 // components/AdsSection.tsx
 'use client';
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Ad {
   id: string;
@@ -239,7 +239,7 @@ export default function AdsSection() {
         >
           <p className="text-gray-500 text-sm">
             Want to promote your product here? 
-            <a href="mailto:ads@devmetrix.cloud" className="text-neonBlue hover:text-neonGreen transition-colors ml-1 font-medium">
+            <a href="mailto:ads@Devmetrix.in" className="text-neonBlue hover:text-neonGreen transition-colors ml-1 font-medium">
               Contact us about advertising
             </a>
           </p>

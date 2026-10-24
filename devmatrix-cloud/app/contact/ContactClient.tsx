@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
 import Footer from '@/components/Footer';
-import { Mail, MessageSquare, Bug, Lightbulb, Handshake } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Bug, Handshake, Lightbulb, Mail, MessageSquare } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
 
 export default function ContactClient() {
   const [formState, setFormState] = useState({
@@ -79,8 +79,8 @@ export default function ContactClient() {
               <p className="text-gray-600 dark:text-gray-400 mb-6 min-h-[50px]">
                 For tool-related issues, bug reports, and technical assistance with our platform.
               </p>
-              <a href="mailto:support@devmetrix.cloud" className="text-lg font-mono text-neonBlue dark:text-blue-400 hover:underline">
-                support@devmetrix.cloud
+              <a href="mailto:support@Devmetrix.in" className="text-lg font-mono text-neonBlue dark:text-blue-400 hover:underline">
+                support@Devmetrix.in
               </a>
             </motion.div>
 
@@ -97,8 +97,8 @@ export default function ContactClient() {
               <p className="text-gray-600 dark:text-gray-400 mb-6 min-h-[50px]">
                 For partnerships, business questions, content feedback, and general information.
               </p>
-              <a href="mailto:contactus@devmetrix.cloud" className="text-lg font-mono text-neonBlue dark:text-purple-400 hover:underline">
-                contactus@devmetrix.cloud
+              <a href="mailto:contactus@Devmetrix.in" className="text-lg font-mono text-neonBlue dark:text-purple-400 hover:underline">
+                contactus@Devmetrix.in
               </a>
             </motion.div>
           </div>

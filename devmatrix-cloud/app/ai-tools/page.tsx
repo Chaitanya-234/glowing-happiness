@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     'ai study planner'
   ],
   openGraph: {
-    title: 'Free AI Developer Tools | DevMetrix.cloud',
+    title: 'Free AI Developer Tools | Devmetrix.in',
     description: 'Collection of free AI-powered tools for developers. Code explanation, resume optimization, interview prep, and more.',
     type: 'website',
   }

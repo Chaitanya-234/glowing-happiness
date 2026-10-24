@@ -8,7 +8,7 @@ export default function Disclaimer() {
 
         <h2>Professional Disclaimer</h2>
         <p>The information provided by DevMetrix ("we," "us," or "our") on
-        devmetrix.cloud is for general informational purposes only...</p>
+        Devmetrix.in is for general informational purposes only...</p>
 
         <h2>Accuracy of Information</h2>
         <p>While we strive to keep information accurate and up-to-date,

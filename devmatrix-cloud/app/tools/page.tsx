@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Free online developer tools including JSON formatter, API tester, JWT decoder, regex playground, and more. No signup required. Privacy-focused tools for developers.',
   keywords: ['developer tools', 'json formatter', 'api tester', 'regex tester', 'jwt decoder', 'base64 encoder', 'free online tools'],
   openGraph: {
-    title: 'Developer Tools - DevMetrix.cloud',
+    title: 'Developer Tools - Devmetrix.in',
     description: 'Free online developer tools for modern web development',
     url: 'https://devmetrix.in/tools',
     type: 'website',
@@ -60,7 +60,7 @@ export default function ToolsPage() {
             Free Developer Tools for Modern Development
           </h2>
           <p className="text-muted leading-relaxed mb-4">
-            DevMetrix.cloud provides a comprehensive suite of free developer tools designed to
+            Devmetrix.in provides a comprehensive suite of free developer tools designed to
             streamline your workflow and boost productivity. Whether you&apos;re a frontend developer,
             backend engineer, DevOps specialist, or full-stack developer, our tools help you
             solve common programming challenges quickly and efficiently.

@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'How DNS Works - Animated Guide | DevMetrix Sessions',
@@ -48,7 +48,7 @@ export default function DnsWorkingPage() {
         <article className="prose prose-lg dark:prose-invert max-w-none">
           <h2 className="text-2xl font-bold mb-4 text-neonBlue">What is DNS?</h2>
           <p className="mb-6">
-            The <strong>Domain Name System (DNS)</strong> is essentially the phonebook of the Internet. Humans access information online through domain names, like <code>google.com</code> or <code>devmetrix.cloud</code>. Web browsers interact through Internet Protocol (IP) addresses. DNS translates domain names to IP addresses so browsers can load Internet resources.
+            The <strong>Domain Name System (DNS)</strong> is essentially the phonebook of the Internet. Humans access information online through domain names, like <code>google.com</code> or <code>Devmetrix.in</code>. Web browsers interact through Internet Protocol (IP) addresses. DNS translates domain names to IP addresses so browsers can load Internet resources.
           </p>
 
           <div className="bg-gray-50 dark:bg-gray-900 border-l-4 border-neonGreen p-6 rounded-r-xl mb-8">
