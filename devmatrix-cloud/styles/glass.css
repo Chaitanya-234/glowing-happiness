@@ -1,0 +1,17 @@
+/* Import once in app/layout.tsx: import "../styles/glass.css"; */
+:root { --glass-bg: rgba(255,255,255,.10); --glass-border: rgba(255,255,255,.18); }
+body {
+  margin: 0; color: #fff; min-height: 100vh; font-family: var(--font-jakarta), system-ui, sans-serif;
+  background: radial-gradient(circle at 50% 0%, #4facfe 0%, #2978c4 35%, #184e88 70%, #0e2f56 100%);
+  background-attachment: fixed;
+}
+.material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; line-height: 1; }
+.glass { background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 8px 32px rgba(10,38,71,.30); }
+.glass-hover { transition: all .3s; }
+.glass-hover:hover { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.32); transform: translateY(-4px); }
+.btn-solid { background:#fff; color:#0f3869; font-weight:700; border-radius:9999px; transition:all .2s; box-shadow:0 6px 20px rgba(0,0,0,.2); }
+.btn-solid:hover { background:#f0f9ff; transform: scale(1.02); }
+.btn-glass { background: rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25); color:#fff; font-weight:600; border-radius:9999px; transition:all .2s; }
+.btn-glass:hover { background:#fff; color:#0f3869; }
+.chip { display:inline-flex; align-items:center; gap:.375rem; padding:.25rem .75rem; border-radius:9999px; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.2); color:#bae6fd; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+@media (prefers-reduced-motion: reduce) { .glass-hover:hover { transform:none; } }
