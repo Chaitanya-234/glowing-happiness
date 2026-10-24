@@ -3,7 +3,7 @@ export default function StructuredData() {
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'DevMetrix.cloud',
+    name: 'Devmetrix.in',
     url: 'https://devmetrix.in',
     logo: 'https://devmetrix.in/logo.png',
     description: 'Free developer tools and utilities for modern web development',
@@ -14,7 +14,7 @@ export default function StructuredData() {
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      email: 'hello@devmetrix.cloud',
+      email: 'hello@Devmetrix.in',
       contactType: 'Customer Support',
     },
   };
@@ -22,7 +22,7 @@ export default function StructuredData() {
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'DevMetrix.cloud',
+    name: 'Devmetrix.in',
     url: 'https://devmetrix.in',
     potentialAction: {
       '@type': 'SearchAction',

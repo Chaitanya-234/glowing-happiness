@@ -51,7 +51,7 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            DevMetrix.cloud
+            Devmetrix.in
           </motion.h1>
 
           <motion.p
@@ -102,7 +102,7 @@ export default function AboutPage() {
             <h2 className={`${sectionTitle} mb-10`}>Our Mission</h2>
             <div className="glass rounded-3xl p-6 md:p-10 space-y-6 text-lg md:text-2xl text-muted leading-relaxed font-light">
               <p className="border-l-4 border-accent pl-6 py-1">
-                DevMetrix.cloud was built with a simple idea: developers need{' '}
+                Devmetrix.in was built with a simple idea: developers need{' '}
                 <span className="text-foreground font-medium">fast, reliable tools</span> without the bloat.
               </p>
               <p className="border-l-4 border-accent/60 pl-6 py-1">

@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Minimize2, Send, Sparkles, Zap, BookOpen, CreditCard, HelpCircle } from 'lucide-react';
+import { ChatMessage as ChatMessageType, chatWithDevBot } from '@/app/actions/chatbot';
+import { AnimatePresence, motion } from 'framer-motion';
+import { BookOpen, CreditCard, HelpCircle, Minimize2, Send, Sparkles, X, Zap } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import React, { useEffect, useRef, useState } from 'react';
 import { ChatMessage } from './ChatMessage';
 import { TypingIndicator } from './TypingIndicator';
-import { ChatMessage as ChatMessageType, chatWithDevBot } from '@/app/actions/chatbot';
-import { usePathname } from 'next/navigation';
 
 interface ChatWindowProps {
   isOpen: boolean;
@@ -174,7 +174,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isOpen, onClose, onMinim
               </button>
             </div>
             <div className="text-center mt-2">
-                <span className="text-[10px] text-gray-400">Powered by Devmetrix.Cloud AI • DevMetrix</span>
+                <span className="text-[10px] text-gray-400">Powered by Devmetrix.in AI • DevMetrix</span>
             </div>
           </div>
         </motion.div>

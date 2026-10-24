@@ -159,7 +159,7 @@ export default function Footer() {
 
           {/* Bottom bar */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-3 px-5 py-3 rounded-full bg-surface/10 border border-border/10 text-xs font-mono text-muted">
-            <p>© {currentYear} DevMetrix.cloud. All rights reserved.</p>
+            <p>© {currentYear} Devmetrix.in. All rights reserved.</p>
             <div className="flex gap-4">
               <Link href="/privacy-policy" className="hover:text-foreground transition-colors">Privacy</Link>
               <Link href="/terms-of-service" className="hover:text-foreground transition-colors">Terms</Link>

@@ -175,7 +175,7 @@ Check out [DevMetrix][1] and [GitHub][2].
 https://devmetrix.in
 
 // Email links
-<hello@devmetrix.cloud>`}</code>
+<hello@Devmetrix.in>`}</code>
         </pre>
 
         <h3 className="text-xl md:text-2xl font-semibold text-purple-100/60 mt-6 md:mt-8 mb-3 md:mb-4">

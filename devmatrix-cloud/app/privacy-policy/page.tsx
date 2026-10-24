@@ -2,8 +2,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | DevMetrix.cloud',
-  description: 'Privacy policy for DevMetrix.cloud developer tools platform.',
+  title: 'Privacy Policy | Devmetrix.in',
+  description: 'Privacy policy for Devmetrix.in developer tools platform.',
 };
 
 export default function PrivacyPolicyPage() {
@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
 
         <h2 className="text-2xl font-semibold text-purple-100/70 mt-8 mb-4">1. Information We Collect</h2>
         <p className="text-purple-200/50">
-          DevMetrix.cloud is committed to protecting your privacy. Our developer tools process data 
+          Devmetrix.in is committed to protecting your privacy. Our developer tools process data 
           entirely in your browser. We do not collect, store, or transmit your tool inputs to our servers.
         </p>
 
@@ -39,7 +39,7 @@ export default function PrivacyPolicyPage() {
 
         <h2 className="text-2xl font-semibold text-purple-100/70 mt-8 mb-4">5. Contact Us</h2>
         <p className="text-purple-200/50">
-          If you have questions about this Privacy Policy, contact us at: privacy@devmetrix.cloud
+          If you have questions about this Privacy Policy, contact us at: privacy@Devmetrix.in
         </p>
       </div>
     </div>

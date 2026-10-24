@@ -253,7 +253,7 @@ class FederatedClient {
 
     constructor() {
         this.model = this.createModel();
-        this.serverId = 'https://api.devmetrix.cloud/fl';
+        this.serverId = 'https://api.Devmetrix.in/fl';
     }
 
     /**

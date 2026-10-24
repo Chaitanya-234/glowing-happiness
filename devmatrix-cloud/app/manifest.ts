@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'DevMetrix.cloud',
+    name: 'Devmetrix.in',
     short_name: 'DevMetrix',
     description: 'Free developer tools including JSON formatter, API tester, JWT decoder, and more.',
     start_url: '/',

@@ -38,7 +38,7 @@ export default function JsonLdArticle({
     },
     publisher: {
       '@type': 'Organization',
-      name: 'DevMetrix.cloud',
+      name: 'Devmetrix.in',
       logo: {
         '@type': 'ImageObject',
         url: 'https://devmetrix.in/icon.png',
