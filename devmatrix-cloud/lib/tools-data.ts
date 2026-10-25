@@ -1907,6 +1907,17 @@ export const tools: Tool[] = [
     popular: true,
     dateAdded: '2026-07-10',
   },
+  {
+  id: 'cv-studio',
+  name: 'CV Studio',
+  description: 'Build ATS-friendly resumes visually. Choose from multiple templates, export LaTeX or high-quality PDFs, and get instant feedback. 100% private, no sign-up.',
+    icon: "⌨️",
+  link: '/tools/cv-studio',
+  category: 'Productivity', // or AI Tools
+  features: ['Live Preview', 'LaTeX Export', 'ATS Checker', 'Privacy First'],
+  popular: true,
+  dateAdded: '2026-07-15',
+},
     {
     id: 'pdf-text-editor',
     name: 'PDF Text Editor',
