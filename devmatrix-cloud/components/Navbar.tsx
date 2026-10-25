@@ -1,6 +1,7 @@
 // components/Navbar.tsx
 'use client';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import Image from 'next/image'; // <-- ADD THIS IMPORT
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -43,17 +44,18 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [hidden, setHidden] = useState(false);
+  const [showThemeMenu, setShowThemeMenu] = useState(false); 
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
-    setHidden(latest > previous && latest > 150 && !isOpen && !activeDropdown);
+    setHidden(latest > previous && latest > 150 && !isOpen && !activeDropdown && !showThemeMenu);
   });
 
-  // Close menus on navigation
   useEffect(() => {
     setIsOpen(false);
     setActiveDropdown(null);
+    setShowThemeMenu(false);
   }, [pathname]);
 
   const isActive = (href?: string) =>
@@ -73,13 +75,20 @@ export default function Navbar() {
       className="fixed top-0 inset-x-0 z-[100] px-4 md:px-12 pt-3"
     >
       <div className="glass mx-auto max-w-[1340px] h-16 rounded-full px-5 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <span className="w-9 h-9 rounded-full bg-surface/20 border border-border/30 grid place-items-center text-foreground">
-            <Icon name="bubble_chart" className="text-[20px]" />
-          </span>
-          <span className="font-bold text-xl tracking-tight text-foreground">
-            DevMetrix<span className="text-accent font-mono text-xs ml-1">cloud</span>
+        
+        {/* CUSTOM LOGO IMAGE */}
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="relative w-10 h-10 rounded-full overflow-hidden border border-border/30 shadow-sm transition-transform group-hover:scale-105 bg-background/50">
+            <Image 
+              src="/file.svg" 
+              alt="DevMetrix Logo" 
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+          <span className="font-extrabold text-xl tracking-tight text-foreground hidden sm:block">
+            DevMetrix
           </span>
         </Link>
 
@@ -153,11 +162,35 @@ export default function Navbar() {
 
         {/* Right side */}
         <div className="flex items-center gap-2">
-          <div className="hidden xl:block"><ThemeToggle /></div>
-          <Link href="/blog/submit" className="hidden sm:inline-flex btn-solid items-center gap-1.5 px-5 py-2.5 text-sm">
-            <Icon name="edit" className="text-[16px]" />
-            Submit Post
-          </Link>
+          <div 
+            className="relative hidden xl:block"
+            onMouseEnter={() => setShowThemeMenu(true)}
+            onMouseLeave={() => setShowThemeMenu(false)}
+          >
+            <button 
+              className="w-10 h-10 rounded-full bg-surface/15 border border-border/25 grid place-items-center text-muted hover:text-foreground hover:bg-surface/25 transition-all"
+              aria-label="Change Theme"
+            >
+              <Icon name="palette" className="text-[20px]" />
+            </button>
+            
+            <AnimatePresence>
+              {showThemeMenu && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute top-full right-0 pt-3 z-50"
+                >
+                  <div className="rounded-2xl bg-background/90 backdrop-blur-xl border border-border/25 shadow-2xl p-2">
+                    <ThemeToggle />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           <button
             type="button"
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
@@ -225,12 +258,10 @@ export default function Navbar() {
                 )
               )}
 
-              <div className="p-2 pt-4 space-y-3">
-                <Link href="/blog/submit" className="btn-solid w-full inline-flex items-center justify-center gap-2 px-6 py-3">
-                  <Icon name="edit" className="text-[18px]" />
-                  Submit Post
-                </Link>
-                <div className="flex justify-center"><ThemeToggle /></div>
+              <div className="p-2 pt-4 border-t border-border/10 mt-2">
+                <div className="flex justify-center">
+                  <ThemeToggle />
+                </div>
               </div>
             </div>
           </motion.div>
