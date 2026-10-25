@@ -89,10 +89,10 @@ export default function ToolsShowcase() {
         </div>
 
         <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
-          Essential PDF Tools
+          Essential Tools
         </h2>
         <p className="text-lg text-muted max-w-2xl mx-auto">
-          Fast, private, and powerful utilities to handle all your document needs.
+          Fast, private, and powerful utilities to handle all your needs.
           Files never leave your browser.
         </p>
       </motion.div>
@@ -111,7 +111,7 @@ export default function ToolsShowcase() {
         className="text-center mt-12"
       >
         <Link href="/tools?category=PDF+Tools" className="btn-solid inline-flex items-center gap-2 px-8 py-4">
-          View All PDF Tools
+          View All Tools
           <Icon name="arrow_forward" className="text-[18px]" />
         </Link>
       </motion.div>

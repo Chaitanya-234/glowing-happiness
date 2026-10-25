@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'PDF Text Editor - Edit PDF Text Locally',
     description: 'Edit PDF text directly in your browser. No upload, no watermark.',
-    url: 'https://devmetrix.cloud/tools/pdf-text-editor',
+    url: 'https://devmetrix.in/tools/pdf-text-editor',
     type: 'website',
   },
 };

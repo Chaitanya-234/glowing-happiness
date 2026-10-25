@@ -3,12 +3,18 @@ import ChatbotWidget from '@/components/Chatbot/Chatbot';
 import Navbar from '@/components/Navbar';
 import { DEFAULT_THEME, noFlashScript } from '@/styles/theme/theme';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono, Plus_Jakarta_Sans } from 'next/font/google';
 import Script from 'next/script';
 import GlassBackground from '../components/GlassBackground';
 import { ThemeProvider } from '../styles/theme/ThemeProvider';
 import './globals.css';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
 
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono', display: 'swap' });
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
