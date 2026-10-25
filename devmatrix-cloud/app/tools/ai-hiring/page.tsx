@@ -1,11 +1,10 @@
-import React from 'react';
 import HiringAssistantClient from './components/HiringAssistantClient';
 
 export const metadata = {
   title: "AI Hiring Assistant for Startups | Automate Resume Screening",
   description: "Free AI-powered hiring tool for startups. Automate resume screening, candidate scoring, skill matching. Generate interview questions. Rank candidates instantly.",
   alternates: {
-    canonical: "https://devmatrix.cloud/tools/ai-hiring",
+    canonical: "https://devmatrix.in/tools/ai-hiring",
   },
 };
 
