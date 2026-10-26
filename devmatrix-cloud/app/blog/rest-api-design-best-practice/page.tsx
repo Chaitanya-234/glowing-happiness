@@ -1,17 +1,20 @@
+'use client';
 // app/blog/rest-api-design-best-practices/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'REST API Design: Best Practices and Common Pitfalls | DevMetrix',
   description: 'Master REST API design with proven patterns, naming conventions, error handling strategies, and versioning techniques for scalable APIs.',
   keywords: ['rest api', 'api design', 'web services', 'api best practices', 'restful api'],
 };
 
 export default function RESTAPIDesignGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="REST API Design: Best Practices and Common Pitfalls"
         description="Design better APIs with proven patterns, naming conventions, error handling strategies, and versioning techniques."

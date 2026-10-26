@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import AdContainer from '@/components/AdContainer';
 import JsonLdArticle from '@/components/JsonLdArticle';
@@ -40,6 +41,7 @@ const sections: Section[] = [
 ];
 
 export default function AiPersonalizationPost() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(0);
@@ -73,7 +75,7 @@ export default function AiPersonalizationPost() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050510] text-gray-200 font-sans selection:bg-purple-500/30 selection:text-purple-100">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="The Hyper-Personalization Revolution: How AI is Creating Unique Digital Experiences for Every Individual in 2026"
         description="Discover how AI-powered personalization engines are revolutionizing digital experiences. Learn about hyper-personalization technology, real-world applications, and the future of customized AI interactions."
@@ -83,7 +85,7 @@ export default function AiPersonalizationPost() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-900 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <motion.div
           className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
           style={{ width: `${progress}%` }}
@@ -234,7 +236,7 @@ export default function AiPersonalizationPost() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 hover:border-purple-500/50 transition-all group">
+                <div className="/50 p-6 rounded-2xl border border-gray-800 hover:border-purple-500/50 transition-all group">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="p-3 bg-purple-900/30 rounded-lg text-purple-400 group-hover:text-purple-300">
                       <Brain size={24} />
@@ -246,7 +248,7 @@ export default function AiPersonalizationPost() {
                   </p>
                 </div>
 
-                <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 hover:border-blue-500/50 transition-all group">
+                <div className="/50 p-6 rounded-2xl border border-gray-800 hover:border-blue-500/50 transition-all group">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="p-3 bg-blue-900/30 rounded-lg text-blue-400 group-hover:text-blue-300">
                       <Smartphone size={24} />
@@ -258,7 +260,7 @@ export default function AiPersonalizationPost() {
                   </p>
                 </div>
 
-                 <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 hover:border-pink-500/50 transition-all group">
+                 <div className="/50 p-6 rounded-2xl border border-gray-800 hover:border-pink-500/50 transition-all group">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="p-3 bg-pink-900/30 rounded-lg text-pink-400 group-hover:text-pink-300">
                       <Globe size={24} />
@@ -270,7 +272,7 @@ export default function AiPersonalizationPost() {
                   </p>
                 </div>
 
-                 <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 hover:border-teal-500/50 transition-all group">
+                 <div className="/50 p-6 rounded-2xl border border-gray-800 hover:border-teal-500/50 transition-all group">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="p-3 bg-teal-900/30 rounded-lg text-teal-400 group-hover:text-teal-300">
                       <Shield size={24} />
@@ -403,7 +405,7 @@ export default function AiPersonalizationPost() {
 
           {/* Conclusion */}
           <section className="mb-16 border-t border-indigo-900/50 pt-12">
-            <div className="bg-black/50 border border-indigo-500/30 rounded-xl p-10 text-center relative overflow-hidden">
+            <div className="/50 border border-indigo-500/30 rounded-xl p-10 text-center relative overflow-hidden">
                <div className="absolute inset-0 bg-indigo-500/5 z-0"></div>
               <h2 className="text-3xl font-bold text-white mb-4 relative z-10">Experience the Future</h2>
               <p className="text-gray-400 mb-8 max-w-2xl mx-auto relative z-10">
@@ -419,7 +421,7 @@ export default function AiPersonalizationPost() {
                 </Link>
                 <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 px-8 py-4 rounded-full font-bold transition-all text-white border border-gray-700"
+                    className="inline-flex items-center gap-2  hover: px-8 py-4 rounded-full font-bold transition-all text-white border border-gray-700"
                 >
                     Read More Articles <ArrowRight size={20} />
                 </Link>

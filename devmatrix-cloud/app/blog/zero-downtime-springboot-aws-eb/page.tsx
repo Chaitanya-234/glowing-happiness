@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { CheckCircle, ChevronDown, ChevronUp, Circle, Cloud, Code, GitBranch, Menu, PlayCircle, Shield, X, Zap } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
@@ -18,6 +19,7 @@ interface Concept {
 }
 
 export default function ZeroDowntimeGuide() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -123,7 +125,7 @@ export default function ZeroDowntimeGuide() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Zero-Downtime Deployments of Spring Boot on AWS Elastic Beanstalk: Complete Setup"
         description="Master zero-downtime deployments for Spring Boot apps on AWS Elastic Beanstalk with detailed setup, blue/green deployments, CI/CD pipelines, security best practices, and real-world examples."
@@ -131,7 +133,7 @@ export default function ZeroDowntimeGuide() {
         authorName="DevMetrix Team"
         url="https://devmetrix.in/blog/zero-downtime-springboot-aws-eb"
       />
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <div
           className="h-full bg-gradient-to-r from-purple-500 to-green-500 transition-all duration-300"
           style={{ width: `${progress}%` }}
@@ -146,7 +148,7 @@ export default function ZeroDowntimeGuide() {
         {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
-      <nav className={`fixed top-0 left-0 h-full bg-gray-900/95 backdrop-blur-sm border-r border-purple-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
+      <nav className={`fixed top-0 left-0 h-full /95 backdrop-blur-sm border-r border-purple-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
         <div className="p-6 overflow-y-auto h-full">
           <h2 className="text-xl font-bold text-purple-400 mb-6">Table of Contents</h2>
           <ul className="space-y-2">
@@ -173,7 +175,7 @@ export default function ZeroDowntimeGuide() {
           <div className="mt-8 p-4 bg-purple-900/30 rounded-lg">
             <div className="text-sm text-purple-300 mb-2">Checklist Progress</div>
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div className="flex-1 h-2  rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-purple-500 to-green-500 transition-all duration-300"
                   style={{ width: `${(completedItems / checklistItems.length) * 100}%` }}
@@ -226,7 +228,7 @@ export default function ZeroDowntimeGuide() {
           </section>
 
           <section id="aws-eb-overview" className="mb-12 lg:mb-16">
-            <div className="bg-gray-800/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-4">
                 <Cloud className="text-purple-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-purple-300">AWS Elastic Beanstalk Overview</h2>
@@ -285,7 +287,7 @@ export default function ZeroDowntimeGuide() {
                   </button>
 
                   {expandedSections[concept.id] && (
-                    <div className="bg-gray-900/50 p-4 rounded-b-lg border-t-0 border border-purple-500/20 mt-0">
+                    <div className="/50 p-4 rounded-b-lg border-t-0 border border-purple-500/20 mt-0">
                       <p className="text-purple-200/80 mb-3">{concept.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {concept.benefits.map((benefit, idx) => (
@@ -302,7 +304,7 @@ export default function ZeroDowntimeGuide() {
           </section>
 
           <section id="setup-blue-green" className="mb-12 lg:mb-16">
-            <div className="bg-gray-800/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-4">
                 <GitBranch className="text-purple-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-purple-300">Setting Up Blue/Green Deployments</h2>
@@ -328,7 +330,7 @@ export default function ZeroDowntimeGuide() {
                 ))}
               </div>
 
-              <div className="bg-gray-900 rounded-lg overflow-hidden">
+              <div className=" rounded-lg overflow-hidden">
                 <div className="bg-purple-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-purple-300 font-mono">bash</span>
                   <Code size={16} className="text-purple-400" />
@@ -367,7 +369,7 @@ aws elasticbeanstalk swap-environment-cnames \\
                 Use AWS CodePipeline and CodeBuild to automate builds, tests, and deployments. This reduces manual steps and ensures consistency across all releases.
               </p>
 
-              <div className="bg-gray-900 rounded-lg overflow-hidden">
+              <div className=" rounded-lg overflow-hidden">
                 <div className="bg-purple-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-purple-300 font-mono">buildspec.yml</span>
                   <Code size={16} className="text-purple-400" />
@@ -420,7 +422,7 @@ artifacts:
                   { title: 'Network Security', desc: 'Use private subnets and security groups' },
                   { title: 'Audit Logs', desc: 'Enable CloudTrail for tracking changes and access' }
                 ].map((practice, idx) => (
-                  <div key={idx} className="bg-gray-900/50 p-4 rounded-lg border border-red-500/20">
+                  <div key={idx} className="/50 p-4 rounded-lg border border-red-500/20">
                     <h3 className="font-semibold text-red-300 mb-2">🔒 {practice.title}</h3>
                     <p className="text-sm text-purple-200/70">{practice.desc}</p>
                   </div>
@@ -436,7 +438,7 @@ artifacts:
           </section>
 
           <section id="real-world" className="mb-12 lg:mb-16">
-            <div className="bg-gray-800/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-4">
                 <CheckCircle className="text-purple-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-purple-300">Real-World Examples</h2>
@@ -486,7 +488,7 @@ artifacts:
                   <button
                     key={idx}
                     onClick={() => toggleChecklist(idx)}
-                    className="w-full flex items-start gap-3 bg-gray-900/50 hover:bg-gray-900/70 p-4 rounded-lg transition-all text-left"
+                    className="w-full flex items-start gap-3 /50 hover:/70 p-4 rounded-lg transition-all text-left"
                   >
                     {checklist[idx] ? (
                       <CheckCircle className="text-green-400 flex-shrink-0 mt-0.5" size={20} />
@@ -504,7 +506,7 @@ artifacts:
                 <div className="text-sm text-green-300 mb-2">
                   Progress: {completedItems} of {checklistItems.length} completed
                 </div>
-                <div className="h-3 bg-gray-700 rounded-full overflow-hidden">
+                <div className="h-3  rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-green-500 to-purple-500 transition-all duration-500"
                     style={{ width: `${(completedItems / checklistItems.length) * 100}%` }}
@@ -535,7 +537,7 @@ artifacts:
           </section>
 
           <section className="mb-16">
-            <div className="bg-gray-800/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
               <h2 className="text-2xl lg:text-3xl font-bold text-purple-300 mb-4">Conclusion</h2>
               <p className="text-purple-200/80 mb-4">
                 Zero-downtime deployments require a combination of sound architecture, automation, and security measures. AWS Elastic Beanstalk simplifies infrastructure management while enabling best practices like blue/green deployments.

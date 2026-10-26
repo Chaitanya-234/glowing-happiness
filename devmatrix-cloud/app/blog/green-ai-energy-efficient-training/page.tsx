@@ -1,12 +1,15 @@
+'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 
-export const metadata = {
+const metadata = {
   title: 'Green AI: Engineering Sustainable and Energy-Efficient Large Language Models | DevMetrix',
   description: 'Explore the future of sustainable AI. Learn about 4-bit quantization, model pruning, sparse mixture-of-experts (MoE), and how to reduce the carbon footprint of model training.',
   keywords: ['Green AI', 'Quantization', 'Model Pruning', 'Sparse MoE', 'Sustainability', 'Carbon Footprint'],
 };
 
 export default function GreenAiBlog() {
+  const { currentTheme: theme } = useTheme();
   return (
     <article className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8 mt-20">
       <JsonLdArticle

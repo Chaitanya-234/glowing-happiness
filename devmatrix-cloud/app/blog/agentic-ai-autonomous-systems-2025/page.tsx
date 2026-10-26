@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import AdContainer from '@/components/AdContainer';
 import JsonLdArticle from '@/components/JsonLdArticle';
@@ -50,6 +51,7 @@ const checklistItems: string[] = [
 ];
 
 export default function AgenticAiGuide() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -90,7 +92,7 @@ export default function AgenticAiGuide() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-950/20 to-gray-900 text-white font-sans">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="The Rise of Agentic AI: Beyond Chatbots to Autonomous Systems"
         description="From simple chatbots to autonomous agents that plan, execute, and iterate. Explore the architecture, frameworks (LangGraph, CrewAI), and future of Agentic AI in 2025."
@@ -100,7 +102,7 @@ export default function AgenticAiGuide() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <div
           className="h-full bg-gradient-to-r from-cyan-400 to-indigo-500 transition-all duration-300"
           style={{ width: `${progress}%` }}
@@ -117,7 +119,7 @@ export default function AgenticAiGuide() {
       </button>
 
       {/* Sidebar Navigation */}
-      <nav className={`fixed top-0 left-0 h-full bg-gray-900/95 backdrop-blur-sm border-r border-indigo-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
+      <nav className={`fixed top-0 left-0 h-full /95 backdrop-blur-sm border-r border-indigo-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
         <div className="p-6 overflow-y-auto h-full">
           <h2 className="text-xl font-bold text-indigo-400 mb-6">Table of Contents</h2>
           <ul className="space-y-2">
@@ -144,7 +146,7 @@ export default function AgenticAiGuide() {
           <div className="mt-8 p-4 bg-indigo-900/30 rounded-lg">
             <div className="text-sm text-indigo-300 mb-2">Readiness Checklist</div>
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div className="flex-1 h-2  rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-cyan-400 to-indigo-500 transition-all duration-300"
                   style={{ width: `${(completedItems / checklistItems.length) * 100}%` }}
@@ -217,19 +219,19 @@ export default function AgenticAiGuide() {
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                  <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                  <div className="/50 p-4 rounded-xl border border-gray-700">
                     <strong className="text-cyan-400 block mb-2">Level 1: Tool Use</strong>
                     <p className="text-sm">The model can decide to call a specific function (e.g., `get_weather()`) to answer a user query, but the control flow is largely linear.</p>
                   </div>
-                  <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                  <div className="/50 p-4 rounded-xl border border-gray-700">
                     <strong className="text-cyan-400 block mb-2">Level 2: Reasoning Chains</strong>
                     <p className="text-sm">The model uses techniques like Chain-of-Thought (CoT) or ReAct (Reasoning + Acting) to plan a multi-step sequence of actions.</p>
                   </div>
-                  <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                  <div className="/50 p-4 rounded-xl border border-gray-700">
                     <strong className="text-cyan-400 block mb-2">Level 3: Multi-Agent Collaboration</strong>
                     <p className="text-sm">Multiple specialized agents (e.g., a "Coder", a "Reviewer", a "Manager") collaborate, hand off tasks, and debate to solve complex problems.</p>
                   </div>
-                  <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                  <div className="/50 p-4 rounded-xl border border-gray-700">
                     <strong className="text-cyan-400 block mb-2">Level 4: Autonomous Evolution</strong>
                     <p className="text-sm">Agents that can improve their own prompts, tools, or memory over time, learning from past failures to become more efficient.</p>
                   </div>
@@ -358,7 +360,7 @@ export default function AgenticAiGuide() {
 
           {/* Frameworks & Tools */}
           <section id="frameworks" className="mb-12 lg:mb-16 scroll-mt-24">
-            <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-8">
+            <div className="/30 border border-gray-700/50 rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
                 <Code className="text-cyan-400" size={28} />
                 <h2 className="text-3xl font-bold text-white">Frameworks: LangGraph & CrewAI</h2>
@@ -379,7 +381,7 @@ export default function AgenticAiGuide() {
                 <p>
                    LangGraph has emerged as the de-facto standard for building stateful, multi-actor applications with LLMs. Unlike the original LangChain `AgentExecutor` which was somewhat opaque, LangGraph models agent workflows as a <strong>Graph</strong>.
                 </p>
-                <div className="bg-black/50 p-4 rounded-lg border border-gray-700 my-4 font-mono text-sm overflow-x-auto">
+                <div className="/50 p-4 rounded-lg border border-gray-700 my-4 font-mono text-sm overflow-x-auto">
 {`import { StateGraph } from "@langchain/langgraph";
 
 const graph = new StateGraph({ channels: stateChannels })
@@ -417,7 +419,7 @@ const app = graph.compile();`}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-gray-800/40 p-6 rounded-xl border border-indigo-500/20 hover:border-indigo-500/50 transition-colors">
+                <div className="/40 p-6 rounded-xl border border-indigo-500/20 hover:border-indigo-500/50 transition-colors">
                   <div className="h-12 w-12 bg-indigo-900/50 rounded-full flex items-center justify-center mb-4">
                     <Code className="text-indigo-400" />
                   </div>
@@ -427,7 +429,7 @@ const app = graph.compile();`}
                   </p>
                 </div>
 
-                <div className="bg-gray-800/40 p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/50 transition-colors">
+                <div className="/40 p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/50 transition-colors">
                   <div className="h-12 w-12 bg-purple-900/50 rounded-full flex items-center justify-center mb-4">
                     <Layers className="text-purple-400" />
                   </div>
@@ -437,7 +439,7 @@ const app = graph.compile();`}
                   </p>
                 </div>
 
-                <div className="bg-gray-800/40 p-6 rounded-xl border border-cyan-500/20 hover:border-cyan-500/50 transition-colors">
+                <div className="/40 p-6 rounded-xl border border-cyan-500/20 hover:border-cyan-500/50 transition-colors">
                   <div className="h-12 w-12 bg-cyan-900/50 rounded-full flex items-center justify-center mb-4">
                     <Bot className="text-cyan-400" />
                   </div>
@@ -511,7 +513,7 @@ const app = graph.compile();`}
                   <button
                     key={idx}
                     onClick={() => toggleChecklist(idx)}
-                    className="w-full flex items-start gap-3 bg-gray-900/50 hover:bg-gray-900/70 p-4 rounded-lg transition-all text-left group"
+                    className="w-full flex items-start gap-3 /50 hover:/70 p-4 rounded-lg transition-all text-left group"
                   >
                     {checklist[idx] ? (
                       <CheckCircle className="text-cyan-400 flex-shrink-0 mt-0.5" size={20} />
@@ -554,7 +556,7 @@ const app = graph.compile();`}
                     />
           {/* Conclusion */}
           <section className="mb-16 border-t border-gray-800 pt-12">
-            <div className="bg-gray-800/50 border border-indigo-500/30 rounded-xl p-8 text-center">
+            <div className="/50 border border-indigo-500/30 rounded-xl p-8 text-center">
               <h2 className="text-3xl font-bold text-white mb-4">Ready to Build Your First Agent?</h2>
               <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
                 The tools are ready. Start small—build a research agent that summarizes news for you, or a coding agent that writes your unit tests. The era of Agentic AI is here.
@@ -570,7 +572,7 @@ const app = graph.compile();`}
                 </Link>
                 <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 px-8 py-4 rounded-full font-bold transition-all text-white"
+                    className="inline-flex items-center gap-2  hover: px-8 py-4 rounded-full font-bold transition-all text-white"
                 >
                     Read More Articles <ArrowRight size={20} />
                 </Link>

@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { motion } from 'framer-motion';
@@ -52,6 +53,7 @@ const checklistItems: string[] = [
 ];
 
 export default function LiquidNeuralNetworksGuide() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -92,7 +94,7 @@ export default function LiquidNeuralNetworksGuide() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-100 font-sans selection:bg-cyan-900 selection:text-white overflow-x-hidden">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Liquid Neural Networks: The Future of Adaptive, Efficient Edge AI"
         description="Liquid Neural Networks (LNNs) are a revolutionary class of time-continuous neural networks inspired by biological brains. They adapt on the fly, require fewer neurons, and are perfect for safety-critical edge AI."

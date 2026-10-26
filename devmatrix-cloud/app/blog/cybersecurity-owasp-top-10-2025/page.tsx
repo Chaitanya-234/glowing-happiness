@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import JsonLdArticle from '@/components/JsonLdArticle';
 import {
@@ -33,6 +34,7 @@ const Key = Lock;
 const Settings = AlertTriangle;
 
 export default function OwaspGuide() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -123,7 +125,7 @@ export default function OwaspGuide() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-red-900/20 to-gray-900 text-white font-sans">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Cybersecurity 2025: OWASP Top 10 Prevention"
         description="Stay ahead of hackers. A deep dive into the OWASP Top 10 vulnerabilities in 2025 and how to prevent them in Spring Boot and Next.js."
@@ -133,7 +135,7 @@ export default function OwaspGuide() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <div
           className="h-full bg-gradient-to-r from-red-500 to-orange-500 transition-all duration-300"
           style={{ width: `${progress}%` }}
@@ -150,7 +152,7 @@ export default function OwaspGuide() {
       </button>
 
       {/* Sidebar Navigation */}
-      <nav className={`fixed top-0 left-0 h-full bg-gray-900/95 backdrop-blur-sm border-r border-red-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
+      <nav className={`fixed top-0 left-0 h-full /95 backdrop-blur-sm border-r border-red-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
         <div className="p-6 overflow-y-auto h-full">
           <h2 className="text-xl font-bold text-red-400 mb-6">Table of Contents</h2>
           <ul className="space-y-2">
@@ -177,7 +179,7 @@ export default function OwaspGuide() {
           <div className="mt-8 p-4 bg-red-900/30 rounded-lg">
             <div className="text-sm text-red-300 mb-2">Checklist Progress</div>
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div className="flex-1 h-2  rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-red-500 to-orange-500 transition-all duration-300"
                   style={{ width: `${(completedItems / checklistItems.length) * 100}%` }}
@@ -235,7 +237,7 @@ export default function OwaspGuide() {
 
           {/* Broken Access Control */}
           <section id="broken-access" className="mb-12 lg:mb-16">
-             <div className="bg-gray-800/50 border border-red-500/30 rounded-xl p-6 lg:p-8">
+             <div className="/50 border border-red-500/30 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-4">
                 <Lock className="text-red-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-red-300">A01: Broken Access Control</h2>
@@ -245,7 +247,7 @@ export default function OwaspGuide() {
                   Occurs when restrictions on what authenticated users are allowed to do are not properly enforced.
               </p>
 
-              <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+              <div className=" rounded-lg overflow-hidden border border-gray-700">
                 <div className="bg-red-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-red-300 font-mono">Vulnerable Code (Java)</span>
                   <Code size={16} className="text-red-400" />
@@ -259,7 +261,7 @@ public Account getAccount(@PathVariable Long id) {
                 </pre>
               </div>
 
-               <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 mt-4">
+               <div className=" rounded-lg overflow-hidden border border-gray-700 mt-4">
                 <div className="bg-green-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-green-300 font-mono">Secure Code (Java)</span>
                   <Code size={16} className="text-green-400" />
@@ -287,7 +289,7 @@ public Account getAccount(@PathVariable Long id) {
                 User-supplied data is not validated, filtered, or sanitized by the application.
               </p>
 
-              <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+              <div className=" rounded-lg overflow-hidden border border-gray-700">
                 <div className="bg-red-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-red-300 font-mono">Vulnerable Code (Java)</span>
                   <Code size={16} className="text-red-400" />
@@ -322,7 +324,7 @@ ResultSet resultSet = statement.executeQuery(query);`}</code>
                   <button
                     key={idx}
                     onClick={() => toggleChecklist(idx)}
-                    className="w-full flex items-start gap-3 bg-gray-900/50 hover:bg-gray-900/70 p-4 rounded-lg transition-all text-left"
+                    className="w-full flex items-start gap-3 /50 hover:/70 p-4 rounded-lg transition-all text-left"
                   >
                     {checklist[idx] ? (
                       <CheckCircle className="text-red-400 flex-shrink-0 mt-0.5" size={20} />
@@ -358,7 +360,7 @@ ResultSet resultSet = statement.executeQuery(query);`}</code>
                 </a>
                 <Link
                     href="/blog"
-                    className="inline-block bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-lg font-semibold transition-all text-white shadow-lg whitespace-nowrap"
+                    className="inline-block  hover: px-6 py-3 rounded-lg font-semibold transition-all text-white shadow-lg whitespace-nowrap"
                 >
                     Read More Blogs
                 </Link>
@@ -391,7 +393,7 @@ ResultSet resultSet = statement.executeQuery(query);`}</code>
 
           {/* Conclusion */}
           <section className="mb-16">
-            <div className="bg-gray-800/50 border border-red-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-red-500/30 rounded-xl p-6 lg:p-8">
               <h2 className="text-2xl lg:text-3xl font-bold text-red-300 mb-4">Conclusion</h2>
               <p className="text-red-200/80 mb-4">
                 Security is an ongoing process, not a one-time fix. The OWASP Top 10 provides a roadmap, but you must be vigilant.

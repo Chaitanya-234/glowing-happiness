@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import ClientPage from './ClientPage';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'AI-Native CI/CD: The Intelligent Pipeline Revolution in 2026',
   description: 'Explore how AI-native CI/CD pipelines are transforming software delivery. Discover how intelligent orchestration, predictive testing, and smart deployments are reshaping DevOps.',
   keywords: [

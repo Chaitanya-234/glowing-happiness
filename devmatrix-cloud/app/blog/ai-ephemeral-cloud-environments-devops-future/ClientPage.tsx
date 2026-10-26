@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import AdContainer from '@/components/AdContainer';
 import JsonLdArticle from '@/components/JsonLdArticle';
@@ -144,6 +145,7 @@ const StoryCard = ({ title, role, children }: { title: string; role: string; chi
 };
 
 export default function EphemeralEnvPost() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [particles, setParticles] = useState<ParticleData[]>([]);
@@ -194,7 +196,7 @@ export default function EphemeralEnvPost() {
   };
 
   return (
-    <div className={`min-h-screen bg-[#111318] text-[#e8edf2] ${cormorant.variable} ${geist.variable} font-sans selection:bg-[#38bdf8]/30 selection:text-[#38bdf8]`}>
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="The Cloud That Disappears: How AI-Powered Ephemeral Environments Are Killing Traditional Dev Infrastructure"
         description="Learn how AI-powered ephemeral cloud environments are revolutionizing DevOps. Discover how self-provisioning, self-destroying infrastructure is saving teams millions while shipping faster than ever."

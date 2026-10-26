@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import JsonLdArticle from '@/components/JsonLdArticle';
 import {
@@ -32,6 +33,7 @@ interface Concept {
 }
 
 export default function RustForJsDevsGuide() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -122,7 +124,7 @@ export default function RustForJsDevsGuide() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-orange-900/20 to-gray-900 text-white font-sans">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Rust for JavaScript Developers: Integrating WASM in 2025"
         description="Learn how to supercharge your web applications by integrating Rust and WebAssembly (WASM) into your Next.js workflow. A practical guide for JS devs."
@@ -132,7 +134,7 @@ export default function RustForJsDevsGuide() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <div
           className="h-full bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-300"
           style={{ width: `${progress}%` }}
@@ -149,7 +151,7 @@ export default function RustForJsDevsGuide() {
       </button>
 
       {/* Sidebar Navigation */}
-      <nav className={`fixed top-0 left-0 h-full bg-gray-900/95 backdrop-blur-sm border-r border-orange-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
+      <nav className={`fixed top-0 left-0 h-full /95 backdrop-blur-sm border-r border-orange-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
         <div className="p-6 overflow-y-auto h-full">
           <h2 className="text-xl font-bold text-orange-400 mb-6">Table of Contents</h2>
           <ul className="space-y-2">
@@ -176,7 +178,7 @@ export default function RustForJsDevsGuide() {
           <div className="mt-8 p-4 bg-orange-900/30 rounded-lg">
             <div className="text-sm text-orange-300 mb-2">Checklist Progress</div>
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div className="flex-1 h-2  rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-300"
                   style={{ width: `${(completedItems / checklistItems.length) * 100}%` }}
@@ -254,7 +256,7 @@ export default function RustForJsDevsGuide() {
                   </button>
 
                   {expandedSections[concept.id] && (
-                    <div className="bg-gray-900/50 p-4 rounded-b-lg border-t-0 border border-orange-500/20 mt-0">
+                    <div className="/50 p-4 rounded-b-lg border-t-0 border border-orange-500/20 mt-0">
                       <p className="text-orange-200/80 mb-3">{concept.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {concept.benefits.map((benefit, idx) => (
@@ -272,7 +274,7 @@ export default function RustForJsDevsGuide() {
 
           {/* WASM Setup Section */}
           <section id="wasm-setup" className="mb-12 lg:mb-16">
-            <div className="bg-gray-800/50 border border-orange-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-orange-500/30 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-4">
                 <Settings className="text-orange-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-orange-300">Setting Up Rust for WASM</h2>
@@ -282,7 +284,7 @@ export default function RustForJsDevsGuide() {
                 <p>We'll create a simple Rust function to calculate the Fibonacci sequence recursively—a classic CPU-bound task.</p>
               </div>
 
-              <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+              <div className=" rounded-lg overflow-hidden border border-gray-700">
                 <div className="bg-orange-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-orange-300 font-mono">src/lib.rs</span>
                   <Code size={16} className="text-orange-400" />
@@ -324,7 +326,7 @@ pub fn greet(name: &str) -> String {
                 Now, let's load this WASM module in a Next.js component. We'll use dynamic imports to load the module asynchronously.
               </p>
 
-              <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+              <div className=" rounded-lg overflow-hidden border border-gray-700">
                 <div className="bg-orange-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-orange-300 font-mono">components/RustCalculator.tsx</span>
                   <Code size={16} className="text-orange-400" />
@@ -371,7 +373,7 @@ export default function RustCalculator() {
 
           {/* Spring Boot Comparison */}
            <section id="backend-comparison" className="mb-12 lg:mb-16">
-            <div className="bg-gray-800/50 border border-orange-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-orange-500/30 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-4">
                 <Cpu className="text-orange-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-orange-300">Rust vs Spring Boot</h2>
@@ -402,7 +404,7 @@ export default function RustCalculator() {
                 </div>
               </div>
 
-              <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 mt-6">
+              <div className=" rounded-lg overflow-hidden border border-gray-700 mt-6">
                 <div className="bg-green-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-green-300 font-mono">Spring Boot Controller (The Traditional Way)</span>
                   <Code size={16} className="text-green-400" />
@@ -437,7 +439,7 @@ public int getFibonacci(@PathVariable int n) {
                   { title: 'Supply Chain', desc: 'Audit your Rust crates just like you audit npm packages.' },
                   { title: 'Side Channels', desc: 'Be aware of timing attacks if performing crypto operations in WASM.' },
                 ].map((practice, idx) => (
-                  <div key={idx} className="bg-gray-900/50 p-4 rounded-lg border border-red-500/20">
+                  <div key={idx} className="/50 p-4 rounded-lg border border-red-500/20">
                     <h3 className="font-semibold text-red-300 mb-2">🔒 {practice.title}</h3>
                     <p className="text-sm text-orange-200/70">{practice.desc}</p>
                   </div>
@@ -461,7 +463,7 @@ public int getFibonacci(@PathVariable int n) {
                   <button
                     key={idx}
                     onClick={() => toggleChecklist(idx)}
-                    className="w-full flex items-start gap-3 bg-gray-900/50 hover:bg-gray-900/70 p-4 rounded-lg transition-all text-left"
+                    className="w-full flex items-start gap-3 /50 hover:/70 p-4 rounded-lg transition-all text-left"
                   >
                     {checklist[idx] ? (
                       <CheckCircle className="text-orange-400 flex-shrink-0 mt-0.5" size={20} />
@@ -497,7 +499,7 @@ public int getFibonacci(@PathVariable int n) {
                 </a>
                 <Link
                     href="/blog"
-                    className="inline-block bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-lg font-semibold transition-all text-white shadow-lg whitespace-nowrap"
+                    className="inline-block  hover: px-6 py-3 rounded-lg font-semibold transition-all text-white shadow-lg whitespace-nowrap"
                 >
                     Read More Blogs
                 </Link>
@@ -530,7 +532,7 @@ public int getFibonacci(@PathVariable int n) {
 
           {/* Conclusion */}
           <section className="mb-16">
-            <div className="bg-gray-800/50 border border-orange-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-orange-500/30 rounded-xl p-6 lg:p-8">
               <h2 className="text-2xl lg:text-3xl font-bold text-orange-300 mb-4">Conclusion</h2>
               <p className="text-orange-200/80 mb-4">
                 Rust and WASM are not here to replace JavaScript, but to augment it. By identifying the CPU-intensive parts of your application and moving them to Rust, you can achieve <strong className="text-red-400">performance gains that were previously impossible</strong> in the browser.

@@ -1,9 +1,11 @@
+'use client';
 // app/blog/database-optimization-guide/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Database Optimization: Indexing, Queries, and Performance | DevMetrix',
   description: 'Master database optimization with indexing strategies, query optimization, and scaling techniques for high-traffic applications. Real-world examples.',
   keywords: ['database optimization', 'sql indexing', 'query optimization', 'database performance', 'sql tuning'],
@@ -17,8 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default function DatabaseOptimizationGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Database Optimization: Indexing, Queries, and Performance"
         description="Improve database performance with indexing strategies, query optimization, and scaling techniques for high-traffic applications."

@@ -1,9 +1,11 @@
+'use client';
 // app/blog/typescript-advanced-patterns/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Advanced TypeScript Patterns for Large-Scale Applications | DevMetrix',
   description: 'Master advanced TypeScript with generics, conditional types, utility types, and design patterns for enterprise applications. Security best practices included.',
   keywords: ['typescript', 'typescript generics', 'typescript patterns', 'typescript advanced', 'type safety', 'typescript security'],
@@ -17,8 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default function TypeScriptAdvancedGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Advanced TypeScript Patterns for Large-Scale Applications"
         description="Master advanced TypeScript features including generics, conditional types, and design patterns for enterprise apps."

@@ -1,17 +1,20 @@
+'use client';
 // app/blog/regex-mastery-complete-tutorial/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Regular Expressions Mastery: From Beginner to Expert | DevMetrix',
   description: 'Master regex patterns with practical examples, common use cases, and real-world applications for web developers.',
   keywords: ['regex', 'regular expressions', 'pattern matching', 'javascript regex', 'regex tutorial'],
 };
 
 export default function RegexMasteryGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Regular Expressions Mastery: From Beginner to Expert"
         description="Learn regular expressions from scratch with practical examples, common patterns, and real-world use cases for web developers."

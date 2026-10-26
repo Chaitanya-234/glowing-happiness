@@ -1,17 +1,20 @@
+'use client';
 // app/blog/cron-jobs-scheduling-guide/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Cron Jobs and Task Scheduling: A Practical Guide | DevMetrix',
   description: 'Master cron expressions and automated task scheduling. Real-world examples, common patterns, and debugging tips.',
   keywords: ['cron jobs', 'task scheduling', 'automation', 'cron expression', 'linux cron'],
 };
 
 export default function CronJobsGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Cron Jobs and Task Scheduling: A Practical Guide"
         description="Master cron expressions, scheduling patterns, and best practices for automated task execution in production environments."

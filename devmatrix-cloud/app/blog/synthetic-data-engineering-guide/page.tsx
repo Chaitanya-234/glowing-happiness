@@ -1,12 +1,15 @@
+'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 
-export const metadata = {
+const metadata = {
   title: 'Synthetic Data Revolution: Training Superior AI Models with Generated Data | DevMetrix',
   description: 'Learn how Synthetic Data Engineering is solving the data scarcity problem. Deep dive into model distillation, self-instruct protocols, and building generation pipelines with Spring AI.',
   keywords: ['Synthetic Data', 'AI Engineering', 'LLM Distillation', 'Spring Boot', 'Data Generation', 'Model Training'],
 };
 
 export default function SyntheticDataBlog() {
+  const { currentTheme: theme } = useTheme();
   return (
     <article className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8 mt-20">
       <JsonLdArticle

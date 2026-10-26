@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import AdContainer from '@/components/AdContainer';
 import JsonLdArticle from '@/components/JsonLdArticle';
@@ -48,6 +49,7 @@ const sections: Section[] = [
 ];
 
 export default function IncidentResponsePost() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const { scrollYProgress } = useScroll();
@@ -81,7 +83,7 @@ export default function IncidentResponsePost() {
   };
 
   return (
-    <div className={`min-h-screen bg-[#0f1117] text-[#f1f5f9] ${playfair.variable} ${sourceSans.variable} font-sans selection:bg-[#22d3ee]/30 selection:text-[#22d3ee]`}>
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="The Silent Guardian: How AI-Powered Autonomous Incident Response is Ending the Era of Downtime in DevOps Forever"
         description="Discover how AI-powered autonomous incident response is revolutionizing DevOps. Learn how self-healing systems detect, diagnose, and fix outages before users ever notice."

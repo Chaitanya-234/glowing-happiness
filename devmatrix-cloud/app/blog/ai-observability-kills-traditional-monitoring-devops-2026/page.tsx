@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import ClientPage from './ClientPage';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'AI Observability: Why Traditional Monitoring Is Dying in 2026',
   description: 'Discover how AI observability is replacing traditional monitoring forever. Learn how intelligent systems are moving from watching your infrastructure to truly understanding it — before problems even happen.',
   keywords: [

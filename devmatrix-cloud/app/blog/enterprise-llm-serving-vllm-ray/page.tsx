@@ -1,12 +1,15 @@
+'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 
-export const metadata = {
+const metadata = {
   title: 'Enterprise LLM Serving: Scaling to Millions with vLLM and Ray | DevMetrix',
   description: 'Master the art of high-throughput LLM serving. Learn about Continuous Batching, PagedAttention, and building a scalable inference cluster with Ray Serve and vLLM.',
   keywords: ['LLM Serving', 'vLLM', 'Ray Serve', 'MLOps', 'PagedAttention', 'Kubernetes'],
 };
 
 export default function LlmServingBlog() {
+  const { currentTheme: theme } = useTheme();
   return (
     <article className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8 mt-20">
       <JsonLdArticle

@@ -1,9 +1,11 @@
+'use client';
 // app/blog/pagination-springboot/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Mastering Pagination in Spring Boot: Comprehensive Guide 2025 | DevMetrix',
   description: 'Learn everything about pagination in Spring Boot: methods, examples, best practices, GitHub repo demos, and real-world applications.',
   keywords: [
@@ -25,8 +27,9 @@ export const metadata: Metadata = {
 };
 
 export default function PaginationSpringBootBlog() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4 prose prose-invert prose-green max-w-4xl mx-auto">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Mastering Pagination in Spring Boot: The Ultimate 2025 Guide"
         description="Explore all popular ways to implement pagination in Spring Boot, complete with examples, best practices, GitHub repo demos, and security considerations."

@@ -1,9 +1,11 @@
+'use client';
 // app/blog/docker-containers-beginners/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Docker Containers for Beginners: Complete Tutorial 2025 | DevMetrix',
   description: 'Learn Docker from scratch - containers, images, Docker Compose, and deployment strategies. Practical examples for modern applications.',
   keywords: ['docker tutorial', 'docker containers', 'docker compose', 'containerization', 'docker beginners'],
@@ -17,8 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default function DockerBeginnersGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Docker Containers for Beginners: Complete Tutorial"
         description="Learn Docker from scratch - containers, images, Docker Compose, and deployment strategies for modern applications."

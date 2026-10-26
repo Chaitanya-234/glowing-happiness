@@ -1,10 +1,12 @@
+'use client';
 // app/blog/api-testing-strategies/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import AdContainer from '@/components/AdContainer';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'API Testing Strategies: Tools and Best Practices for 2025 | DevMetrix',
   description: 'Master API testing with comprehensive strategies for unit tests, integration tests, and automated workflows. Real examples and best practices.',
   keywords: ['api testing', 'rest api testing', 'integration testing', 'postman', 'jest', 'automated testing'],
@@ -18,8 +20,9 @@ export const metadata: Metadata = {
 };
 
 export default function APITestingGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="API Testing Strategies: Tools and Best Practices"
         description="Master API testing with comprehensive strategies for unit tests, integration tests, and automated workflows."

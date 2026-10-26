@@ -1,9 +1,11 @@
+'use client';
 // app/blog/git-workflow-best-practices/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Git Workflow Best Practices for Development Teams in 2025 | DevMetrix',
   description: 'Master Git workflows with proven branching strategies, commit conventions, and team collaboration practices. Real-world examples from production teams.',
   keywords: ['git workflow', 'git branching', 'gitflow', 'github flow', 'commit conventions', 'team collaboration'],
@@ -17,8 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default function GitWorkflowGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Git Workflow Best Practices for Development Teams"
         description="Optimize your team collaboration with proven Git workflows, branching strategies, and commit conventions."

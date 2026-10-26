@@ -1,9 +1,11 @@
+'use client';
 // app/blog/toon-format-guide/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'TOON Format: The Token-Efficient Alternative to JSON | DevMetrix',
   description: 'Discover TOON - the data format that cuts LLM token usage in half. Learn why devs are ditching JSON for AI applications.',
   keywords: ['toon format', 'json alternative', 'token optimization', 'llm efficiency', 'data serialization', 'ai development'],
@@ -17,8 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default function ToonFormatGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="TOON: The Next-Gen Data Format for Efficient LLM Tokenization"
         description="Explore TOON, a lightweight alternative to JSON optimized for reducing token overhead in large language models. Discover why it matters and how it stacks up against JSON."

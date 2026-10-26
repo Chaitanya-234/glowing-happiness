@@ -1,15 +1,18 @@
+'use client';
 // app/blog/complete-guide-json-validation/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'The Complete Guide to JSON Validation | DevMetrix Blog',
   description: 'Master JSON validation with this comprehensive guide covering syntax rules, common errors, validation tools, and best practices.',
 };
 
 export default function JSONValidationGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="The Complete Guide to JSON Validation: Best Practices and Tools"
         description="Master JSON validation with this comprehensive guide covering syntax rules, common errors, validation tools, and best practices for API development."
