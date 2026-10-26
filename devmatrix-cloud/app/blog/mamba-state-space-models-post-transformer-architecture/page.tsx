@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { motion } from 'framer-motion';
@@ -49,6 +50,7 @@ const checklistItems: string[] = [
 ];
 
 export default function MambaGuide() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -89,7 +91,7 @@ export default function MambaGuide() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-black text-green-50 font-sans selection:bg-green-900 selection:text-white">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Beyond Transformers: The Rise of Mamba and State Space Models (SSMs)"
         description="The Transformer architecture has dominated AI for years, but the quadratic cost of attention is a bottleneck. Enter Mamba and State Space Models (SSMs)—linear-time architectures that promise to dethrone the Transformer."
@@ -99,7 +101,7 @@ export default function MambaGuide() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-900 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <motion.div
           className="h-full bg-gradient-to-r from-green-400 to-emerald-600"
           style={{ width: `${progress}%` }}
@@ -124,7 +126,7 @@ export default function MambaGuide() {
       </button>
 
       {/* Sidebar Navigation */}
-      <nav className={`fixed top-0 left-0 h-full bg-black/95 backdrop-blur-md border-r border-green-900/50 w-72 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
+      <nav className={`fixed top-0 left-0 h-full /95 backdrop-blur-md border-r border-green-900/50 w-72 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
         <div className="p-6 overflow-y-auto h-full scrollbar-thin scrollbar-thumb-green-900 scrollbar-track-black">
           <div className="flex items-center gap-2 mb-8 px-2">
             <Activity className="text-green-500" size={24} />
@@ -158,7 +160,7 @@ export default function MambaGuide() {
               <span>MAMBA KNOWLEDGE</span>
               <span>{Math.round((completedItems / checklistItems.length) * 100)}%</span>
             </div>
-            <div className="h-1.5 bg-gray-900 rounded-full overflow-hidden">
+            <div className="h-1.5  rounded-full overflow-hidden">
               <motion.div
                 className="h-full bg-green-500"
                 initial={{ width: 0 }}
@@ -220,7 +222,7 @@ export default function MambaGuide() {
 
           {/* The Quadratic Bottleneck */}
           <section id="quadratic-bottleneck" className="mb-20 scroll-mt-24">
-            <div className="bg-gray-900/50 border border-red-900/30 rounded-3xl p-8 lg:p-12 relative overflow-hidden">
+            <div className="/50 border border-red-900/30 rounded-3xl p-8 lg:p-12 relative overflow-hidden">
                <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
 
               <div className="flex items-center gap-4 mb-8 relative z-10">
@@ -238,7 +240,7 @@ export default function MambaGuide() {
                   In Self-Attention, every token in a sequence looks at every other token to calculate its relevance. If you have a sentence with 5 words, that{"'"}s 25 interactions. Manageable. But if you have a book with 100,000 tokens? That{"'"}s 10 billion interactions for a single layer.
                 </p>
 
-                <div className="my-8 p-6 bg-black rounded-xl border border-gray-800 font-mono text-sm overflow-x-auto">
+                <div className="my-8 p-6  rounded-xl border border-gray-800 font-mono text-sm overflow-x-auto">
                   <p className="text-gray-500 mb-2">// The cost of Attention</p>
                   <p className="text-blue-400">Attention(Q, K, V) = softmax((QK^T) / √d)V</p>
                 </div>
@@ -287,7 +289,7 @@ export default function MambaGuide() {
                   An SSM maps a 1-D input signal {'$x(t)$'} (e.g., audio waveform, text embeddings) to a 1-D output signal {'$y(t)$'} through a latent state {'$h(t)$'}. It is defined by a simple Ordinary Differential Equation (ODE):
                 </p>
 
-                <div className="bg-gray-900 p-6 rounded-lg border-l-4 border-green-500 my-6">
+                <div className=" p-6 rounded-lg border-l-4 border-green-500 my-6">
                   <p className="font-mono text-lg text-white mb-2">h{"'"}t = A h(t) + B x(t)</p>
                   <p className="font-mono text-lg text-white">y(t) = C h(t)</p>
                 </div>
@@ -303,7 +305,7 @@ export default function MambaGuide() {
                 <p>
                   Since computers (and text) operate in discrete time steps, not continuous time, we must "discretize" this ODE. Using the Zero-Order Hold (ZOH) method, we convert the continuous parameters {'$(\\boldsymbol{A}, \\boldsymbol{B})$'} into discrete parameters {'$(\\boldsymbol{\\bar{A}}, \\boldsymbol{\\bar{B}})$'}:
                 </p>
-                <div className="font-mono text-sm text-green-300 bg-black p-4 rounded-md">
+                <div className="font-mono text-sm text-green-300  p-4 rounded-md">
                    {'h_t = \\bar{A} h_{t-1} + \\bar{B} x_t'} <br/>
                    y_t = C h_t
                 </div>
@@ -361,7 +363,7 @@ export default function MambaGuide() {
                   <p>
                     Mamba introduces <strong>Selective State Spaces</strong>. It allows the model to vary the parameters {'$\\boldsymbol{B}, \\boldsymbol{C}$'}, and the step size {'$\\Delta$'} <em>based on the input</em>.
                   </p>
-                  <div className="bg-black/50 p-4 rounded-lg border border-green-500/30 text-center font-mono text-green-300 my-4">
+                  <div className="/50 p-4 rounded-lg border border-green-500/30 text-center font-mono text-green-300 my-4">
                     B(t) = Linear(x(t))<br/>
                     C(t) = Linear(x(t))<br/>
                     &Delta;(t) = Softplus(Linear(x(t)))
@@ -417,7 +419,7 @@ export default function MambaGuide() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                 <div className="bg-gray-900 border border-gray-800 p-6 rounded-xl">
+                 <div className=" border border-gray-800 p-6 rounded-xl">
                     <h3 className="text-xl font-bold text-white mb-4">Inference Throughput</h3>
                     <div className="space-y-4">
                        <div>
@@ -425,8 +427,8 @@ export default function MambaGuide() {
                              <span className="text-gray-400">Transformer (Attention)</span>
                              <span className="text-gray-400">1x</span>
                           </div>
-                          <div className="h-2 bg-gray-800 rounded-full">
-                             <div className="h-full w-[20%] bg-gray-600 rounded-full"></div>
+                          <div className="h-2  rounded-full">
+                             <div className="h-full w-[20%]  rounded-full"></div>
                           </div>
                        </div>
                        <div>
@@ -434,14 +436,14 @@ export default function MambaGuide() {
                              <span className="text-green-400 font-bold">Mamba</span>
                              <span className="text-green-400 font-bold">5x</span>
                           </div>
-                          <div className="h-2 bg-gray-800 rounded-full">
+                          <div className="h-2  rounded-full">
                              <div className="h-full w-full bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
                           </div>
                        </div>
                     </div>
                  </div>
 
-                 <div className="bg-gray-900 border border-gray-800 p-6 rounded-xl">
+                 <div className=" border border-gray-800 p-6 rounded-xl">
                     <h3 className="text-xl font-bold text-white mb-4">Memory Usage (Long Context)</h3>
                      <div className="space-y-4">
                        <div>
@@ -449,7 +451,7 @@ export default function MambaGuide() {
                              <span className="text-gray-400">Transformer (KV Cache)</span>
                              <span className="text-red-400">Explodes (Quadratic)</span>
                           </div>
-                          <div className="h-2 bg-gray-800 rounded-full relative overflow-hidden">
+                          <div className="h-2  rounded-full relative overflow-hidden">
                              <div className="absolute left-0 top-0 h-full bg-gradient-to-r from-red-500 to-red-700 w-[90%]"></div>
                           </div>
                        </div>
@@ -458,7 +460,7 @@ export default function MambaGuide() {
                              <span className="text-green-400 font-bold">Mamba (State)</span>
                              <span className="text-green-400 font-bold">Constant</span>
                           </div>
-                          <div className="h-2 bg-gray-800 rounded-full">
+                          <div className="h-2  rounded-full">
                              <div className="h-full w-[10%] bg-green-500 rounded-full"></div>
                           </div>
                        </div>
@@ -516,7 +518,7 @@ export default function MambaGuide() {
                     className={`flex items-start gap-3 p-4 rounded-lg transition-all text-left border ${
                       checklist[idx]
                         ? 'bg-green-900/40 border-green-500/50'
-                        : 'bg-black border-gray-800 hover:border-green-500/30'
+                        : ' border-gray-800 hover:border-green-500/30'
                     }`}
                   >
                     {checklist[idx] ? (
@@ -535,7 +537,7 @@ export default function MambaGuide() {
 
           {/* Conclusion */}
           <section className="mb-16 border-t border-green-900/50 pt-12">
-            <div className="bg-black border border-green-500/30 rounded-xl p-10 text-center relative overflow-hidden">
+            <div className=" border border-green-500/30 rounded-xl p-10 text-center relative overflow-hidden">
                <div className="absolute inset-0 bg-green-500/5 z-0"></div>
               <h2 className="text-3xl font-bold text-white mb-4 relative z-10">Dive Deeper into AI Research</h2>
               <p className="text-gray-400 mb-8 max-w-2xl mx-auto relative z-10">
@@ -551,7 +553,7 @@ export default function MambaGuide() {
                 </Link>
                 <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 px-8 py-4 rounded-full font-bold transition-all text-white border border-gray-700"
+                    className="inline-flex items-center gap-2  hover: px-8 py-4 rounded-full font-bold transition-all text-white border border-gray-700"
                 >
                     Read More Articles <ArrowRight size={20} />
                 </Link>

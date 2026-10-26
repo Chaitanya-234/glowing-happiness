@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import JsonLdArticle from '@/components/JsonLdArticle';
 import {
@@ -49,6 +50,7 @@ const checklistItems: string[] = [
 ];
 
 export default function MultimodalAiGuide() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -89,7 +91,7 @@ export default function MultimodalAiGuide() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-emerald-950/20 to-gray-900 text-white font-sans">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Multimodal AI Architecture: Bridging Text, Vision, and Audio"
         description="Deep dive into the architecture of Multimodal Large Language Models (MLLMs). Learn how Gemini 1.5 and GPT-4o process text, images, and audio simultaneously."
@@ -99,7 +101,7 @@ export default function MultimodalAiGuide() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <div
           className="h-full bg-gradient-to-r from-teal-400 to-emerald-500 transition-all duration-300"
           style={{ width: `${progress}%` }}
@@ -116,7 +118,7 @@ export default function MultimodalAiGuide() {
       </button>
 
       {/* Sidebar Navigation */}
-      <nav className={`fixed top-0 left-0 h-full bg-gray-900/95 backdrop-blur-sm border-r border-teal-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
+      <nav className={`fixed top-0 left-0 h-full /95 backdrop-blur-sm border-r border-teal-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
         <div className="p-6 overflow-y-auto h-full">
           <h2 className="text-xl font-bold text-teal-400 mb-6">Table of Contents</h2>
           <ul className="space-y-2">
@@ -143,7 +145,7 @@ export default function MultimodalAiGuide() {
           <div className="mt-8 p-4 bg-teal-900/30 rounded-lg">
             <div className="text-sm text-teal-300 mb-2">Readiness Checklist</div>
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div className="flex-1 h-2  rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-teal-400 to-emerald-500 transition-all duration-300"
                   style={{ width: `${(completedItems / checklistItems.length) * 100}%` }}
@@ -219,7 +221,7 @@ export default function MultimodalAiGuide() {
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                   <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700 text-center">
+                   <div className="/50 p-4 rounded-xl border border-gray-700 text-center">
                      <div className="bg-blue-500/20 p-3 rounded-full inline-block mb-3"><ImageIcon className="text-blue-400"/></div>
                      <strong className="block text-white mb-1">Visual Input</strong>
                      <span className="text-xs text-gray-400">Pixels → Patches → Visual Tokens</span>
@@ -228,7 +230,7 @@ export default function MultimodalAiGuide() {
                      <ArrowRight className="text-gray-600 hidden md:block" />
                      <ArrowRight className="text-gray-600 md:hidden rotate-90 my-2" />
                    </div>
-                   <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700 text-center">
+                   <div className="/50 p-4 rounded-xl border border-gray-700 text-center">
                      <div className="bg-purple-500/20 p-3 rounded-full inline-block mb-3"><Cpu className="text-purple-400"/></div>
                      <strong className="block text-white mb-1">Transformer Backbone</strong>
                      <span className="text-xs text-gray-400">Processes All Tokens</span>
@@ -310,7 +312,7 @@ export default function MultimodalAiGuide() {
                 <p>
                   <strong>The Projector (The Glue):</strong> The output of the Vision Encoder (e.g., 256 image feature vectors) needs to be translated into the LLM's language. This is done by a "Projector" module—often a simple Multi-Layer Perceptron (MLP) or a Q-Former (Query Transformer). The Projector maps visual features to the same dimension as the LLM's text embeddings.
                 </p>
-                <p className="bg-gray-800/50 p-4 border-l-4 border-teal-500 italic">
+                <p className="/50 p-4 border-l-4 border-teal-500 italic">
                   "To the LLM, an image just looks like a sequence of strange, foreign words at the beginning of the sentence."
                 </p>
 
@@ -343,7 +345,7 @@ export default function MultimodalAiGuide() {
 
           {/* Training Pipelines */}
           <section id="training" className="mb-12 lg:mb-16 scroll-mt-24">
-            <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-8">
+            <div className="/30 border border-gray-700/50 rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
                 <Activity className="text-emerald-400" size={28} />
                 <h2 className="text-3xl font-bold text-white">Training Pipelines</h2>
@@ -380,7 +382,7 @@ export default function MultimodalAiGuide() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gray-800/40 p-6 rounded-xl border border-blue-500/20 hover:border-blue-500/50 transition-colors">
+                <div className="/40 p-6 rounded-xl border border-blue-500/20 hover:border-blue-500/50 transition-colors">
                   <h3 className="text-xl font-bold text-blue-300 mb-4">Gemini 1.5 Pro</h3>
                   <ul className="space-y-3 text-sm text-gray-300">
                     <li className="flex items-start gap-2">
@@ -398,7 +400,7 @@ export default function MultimodalAiGuide() {
                   </ul>
                 </div>
 
-                <div className="bg-gray-800/40 p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/50 transition-colors">
+                <div className="/40 p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/50 transition-colors">
                   <h3 className="text-xl font-bold text-purple-300 mb-4">GPT-4o (Omni)</h3>
                    <ul className="space-y-3 text-sm text-gray-300">
                     <li className="flex items-start gap-2">
@@ -428,21 +430,21 @@ export default function MultimodalAiGuide() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                  <div className="space-y-2">
-                    <div className="bg-gray-800 p-3 rounded-lg w-fit"><Activity className="text-red-400"/></div>
+                    <div className=" p-3 rounded-lg w-fit"><Activity className="text-red-400"/></div>
                     <h3 className="text-lg font-bold text-white">Healthcare</h3>
                     <p className="text-gray-400 text-sm">
                         Analyzing X-rays, MRIs, and CT scans alongside patient history (text) to diagnose conditions. MLLMs can spot anomalies a doctor might miss in the visual noise.
                     </p>
                  </div>
                  <div className="space-y-2">
-                    <div className="bg-gray-800 p-3 rounded-lg w-fit"><Cpu className="text-yellow-400"/></div>
+                    <div className=" p-3 rounded-lg w-fit"><Cpu className="text-yellow-400"/></div>
                     <h3 className="text-lg font-bold text-white">Robotics</h3>
                     <p className="text-gray-400 text-sm">
                         Robots need to see. MLLMs allow robots to understand natural language commands ("Pick up the red apple") and translate them into motor actions based on visual input.
                     </p>
                  </div>
                  <div className="space-y-2">
-                    <div className="bg-gray-800 p-3 rounded-lg w-fit"><Video className="text-pink-400"/></div>
+                    <div className=" p-3 rounded-lg w-fit"><Video className="text-pink-400"/></div>
                     <h3 className="text-lg font-bold text-white">Content Creation</h3>
                     <p className="text-gray-400 text-sm">
                         Automated video editing, generating thumbnails, captioning videos, and even creating entire movies from scripts.
@@ -454,7 +456,7 @@ export default function MultimodalAiGuide() {
 
           {/* Checklist */}
            <section className="mb-12 lg:mb-16">
-            <div className="bg-gray-800/50 border border-teal-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-teal-500/30 rounded-xl p-6 lg:p-8">
               <h3 className="text-2xl font-bold text-teal-300 mb-4 flex items-center gap-2">
                 ✅ Multimodal Strategy Checklist
               </h3>
@@ -467,7 +469,7 @@ export default function MultimodalAiGuide() {
                   <button
                     key={idx}
                     onClick={() => toggleChecklist(idx)}
-                    className="w-full flex items-start gap-3 bg-gray-900/50 hover:bg-gray-900/70 p-4 rounded-lg transition-all text-left group"
+                    className="w-full flex items-start gap-3 /50 hover:/70 p-4 rounded-lg transition-all text-left group"
                   >
                     {checklist[idx] ? (
                       <CheckCircle className="text-emerald-400 flex-shrink-0 mt-0.5" size={20} />
@@ -504,7 +506,7 @@ export default function MultimodalAiGuide() {
 
           {/* Conclusion */}
           <section className="mb-16 border-t border-gray-800 pt-12">
-            <div className="bg-gray-800/50 border border-teal-500/30 rounded-xl p-8 text-center">
+            <div className="/50 border border-teal-500/30 rounded-xl p-8 text-center">
               <h2 className="text-3xl font-bold text-white mb-4">Experience Multimodality</h2>
               <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
                 Don't just read about it. Test our multimodal tools powered by Gemini 1.5 and GPT-4o today.
@@ -519,7 +521,7 @@ export default function MultimodalAiGuide() {
                 </Link>
                 <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 px-8 py-4 rounded-full font-bold transition-all text-white"
+                    className="inline-flex items-center gap-2  hover: px-8 py-4 rounded-full font-bold transition-all text-white"
                 >
                     Back to Blog <ArrowRight size={20} />
                 </Link>

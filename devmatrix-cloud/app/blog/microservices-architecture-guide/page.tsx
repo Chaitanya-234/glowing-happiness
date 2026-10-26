@@ -1,9 +1,11 @@
+'use client';
 // app/blog/microservices-architecture-guide/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Microservices Architecture: Design Patterns and Best Practices | DevMetrix',
   description: 'Build scalable microservices with proper service boundaries, communication patterns, security practices, and deployment strategies for enterprise systems.',
   keywords: ['microservices', 'microservices architecture', 'service mesh', 'api gateway', 'distributed systems', 'microservices security'],
@@ -17,8 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default function MicroservicesGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Microservices Architecture: Design Patterns and Best Practices"
         description="Build scalable microservices with proper service boundaries, communication patterns, and deployment strategies."

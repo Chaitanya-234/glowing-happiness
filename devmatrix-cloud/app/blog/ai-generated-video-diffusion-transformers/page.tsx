@@ -1,7 +1,10 @@
+'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 import AdContainer from '@/components/AdContainer';
 import JsonLdArticle from '@/components/JsonLdArticle';
 
 export default function DiffusionTransformersBlog() {
+  const { currentTheme: theme } = useTheme();
   return (
     <article className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8 mt-20">
       <JsonLdArticle

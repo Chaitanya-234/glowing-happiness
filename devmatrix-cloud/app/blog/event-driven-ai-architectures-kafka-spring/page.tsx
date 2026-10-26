@@ -1,6 +1,9 @@
+'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 
 export default function EventDrivenAIBlog() {
+  const { currentTheme: theme } = useTheme();
   return (
    <article className="max-w-4xl mx-auto px-4 pt-24 pb-8 sm:px-6 lg:px-8">
       <JsonLdArticle

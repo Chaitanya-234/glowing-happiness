@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import ClientPage from './ClientPage';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'AI Incident Response: How DevOps Is Ending Downtime in 2026',
   description: 'Discover how AI-powered autonomous incident response is revolutionizing DevOps. Learn how self-healing systems detect, diagnose, and fix outages before users ever notice.',
   keywords: [

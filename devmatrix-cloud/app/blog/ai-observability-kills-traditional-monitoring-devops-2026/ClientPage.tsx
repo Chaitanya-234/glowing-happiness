@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import AdContainer from '@/components/AdContainer';
 import JsonLdArticle from '@/components/JsonLdArticle';
@@ -160,6 +161,7 @@ const AnimatedStat = ({ value, label, suffix = "" }: { value: number, label: str
 // --- Main Page Component ---
 
 export default function AiObservabilityPost() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(0);
@@ -193,7 +195,7 @@ export default function AiObservabilityPost() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0d1520] text-[#dce8f0] font-sans selection:bg-[#4ade80]/30 selection:text-green-100">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="AI Observability: Why Traditional Monitoring Is Dying in 2026"
         description="Discover how AI observability is replacing traditional monitoring forever. Learn how intelligent systems are moving from watching your infrastructure to truly understanding it."
@@ -203,7 +205,7 @@ export default function AiObservabilityPost() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-900 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <motion.div
           className="h-full bg-[#4ade80]"
           style={{ width: `${progress}%` }}
@@ -241,7 +243,7 @@ export default function AiObservabilityPost() {
                     className={`w-full text-left px-4 py-3 rounded-lg transition-all flex items-center gap-3 border border-transparent ${
                       activeSection === section.id
                         ? 'bg-[#4ade80]/10 text-[#4ade80] border-[#4ade80]/30 shadow-[0_0_10px_rgba(74,222,128,0.1)]'
-                        : 'text-gray-400 hover:text-[#4ade80] hover:bg-gray-800/50'
+                        : 'text-gray-400 hover:text-[#4ade80] hover:/50'
                     }`}
                   >
                     <Icon size={16} className={activeSection === section.id ? "text-[#4ade80]" : "text-gray-600"} />
@@ -516,7 +518,7 @@ export default function AiObservabilityPost() {
               <div className="flex flex-wrap justify-center gap-4 relative z-10">
                  <Link
                     href="/blog/ai-ephemeral-cloud-environments-devops-future"
-                    className="inline-flex items-center gap-2 bg-[#0d1520] hover:bg-gray-800 px-8 py-4 rounded-full font-bold transition-all text-[#4ade80] border border-[#4ade80]/30 hover:shadow-[0_0_20px_rgba(74,222,128,0.2)]"
+                    className="inline-flex items-center gap-2 bg-[#0d1520] hover: px-8 py-4 rounded-full font-bold transition-all text-[#4ade80] border border-[#4ade80]/30 hover:shadow-[0_0_20px_rgba(74,222,128,0.2)]"
                 >
                     <ArrowRight size={20} />
                     Also Read: AI Ephemeral Environments

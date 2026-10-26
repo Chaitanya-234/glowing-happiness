@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import JsonLdArticle from '@/components/JsonLdArticle';
 import {
@@ -33,6 +34,7 @@ interface Concept {
 }
 
 export default function AiAgentsGuide() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -130,7 +132,7 @@ export default function AiAgentsGuide() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white font-sans">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Building Autonomous AI Agents with LangChain & Next.js"
         description="Learn how to build powerful autonomous AI agents using LangChain, Next.js, and Spring Boot. A complete guide for 2025."
@@ -140,7 +142,7 @@ export default function AiAgentsGuide() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <div
           className="h-full bg-gradient-to-r from-purple-500 to-green-500 transition-all duration-300"
           style={{ width: `${progress}%` }}
@@ -157,7 +159,7 @@ export default function AiAgentsGuide() {
       </button>
 
       {/* Sidebar Navigation */}
-      <nav className={`fixed top-0 left-0 h-full bg-gray-900/95 backdrop-blur-sm border-r border-purple-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
+      <nav className={`fixed top-0 left-0 h-full /95 backdrop-blur-sm border-r border-purple-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
         <div className="p-6 overflow-y-auto h-full">
           <h2 className="text-xl font-bold text-purple-400 mb-6">Table of Contents</h2>
           <ul className="space-y-2">
@@ -184,7 +186,7 @@ export default function AiAgentsGuide() {
           <div className="mt-8 p-4 bg-purple-900/30 rounded-lg">
             <div className="text-sm text-purple-300 mb-2">Checklist Progress</div>
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div className="flex-1 h-2  rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-purple-500 to-green-500 transition-all duration-300"
                   style={{ width: `${(completedItems / checklistItems.length) * 100}%` }}
@@ -262,7 +264,7 @@ export default function AiAgentsGuide() {
                   </button>
 
                   {expandedSections[concept.id] && (
-                    <div className="bg-gray-900/50 p-4 rounded-b-lg border-t-0 border border-purple-500/20 mt-0">
+                    <div className="/50 p-4 rounded-b-lg border-t-0 border border-purple-500/20 mt-0">
                       <p className="text-purple-200/80 mb-3">{concept.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {concept.benefits.map((benefit, idx) => (
@@ -280,7 +282,7 @@ export default function AiAgentsGuide() {
 
           {/* LangChain Setup Section */}
           <section id="langchain-setup" className="mb-12 lg:mb-16">
-            <div className="bg-gray-800/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-4">
                 <Code className="text-purple-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-purple-300">Setting Up LangChain in Next.js</h2>
@@ -290,7 +292,7 @@ export default function AiAgentsGuide() {
                 <p>First, let's initialize our agent in a Next.js API route. We'll use the <code>langchain</code> library to create an executor that can use tools.</p>
               </div>
 
-              <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+              <div className=" rounded-lg overflow-hidden border border-gray-700">
                 <div className="bg-purple-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-purple-300 font-mono">app/api/agent/route.ts</span>
                   <Code size={16} className="text-purple-400" />
@@ -344,7 +346,7 @@ export async function POST(req: Request) {
                 Real-world agents need access to business logic. Here's how to expose a Spring Boot service as a tool for your AI agent.
               </p>
 
-              <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+              <div className=" rounded-lg overflow-hidden border border-gray-700">
                 <div className="bg-purple-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-purple-300 font-mono">CustomerService.java</span>
                   <Code size={16} className="text-purple-400" />
@@ -399,14 +401,14 @@ public class CustomerController {
                   { title: 'Human-in-the-Loop', desc: 'Require human approval for high-stakes actions (e.g., deleting data).' },
                   { title: 'Secret Management', desc: 'Never hardcode API keys. Use environment variables.' },
                 ].map((practice, idx) => (
-                  <div key={idx} className="bg-gray-900/50 p-4 rounded-lg border border-red-500/20">
+                  <div key={idx} className="/50 p-4 rounded-lg border border-red-500/20">
                     <h3 className="font-semibold text-red-300 mb-2">🔒 {practice.title}</h3>
                     <p className="text-sm text-purple-200/70">{practice.desc}</p>
                   </div>
                 ))}
               </div>
 
-               <div className="mt-6 bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+               <div className="mt-6  rounded-lg overflow-hidden border border-gray-700">
                 <div className="bg-red-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-red-300 font-mono">Insecure vs Secure</span>
                 </div>
@@ -445,7 +447,7 @@ public class CustomerController {
                   <button
                     key={idx}
                     onClick={() => toggleChecklist(idx)}
-                    className="w-full flex items-start gap-3 bg-gray-900/50 hover:bg-gray-900/70 p-4 rounded-lg transition-all text-left"
+                    className="w-full flex items-start gap-3 /50 hover:/70 p-4 rounded-lg transition-all text-left"
                   >
                     {checklist[idx] ? (
                       <CheckCircle className="text-green-400 flex-shrink-0 mt-0.5" size={20} />
@@ -481,7 +483,7 @@ public class CustomerController {
                 </a>
                 <Link
                     href="/blog"
-                    className="inline-block bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-lg font-semibold transition-all text-white shadow-lg whitespace-nowrap"
+                    className="inline-block  hover: px-6 py-3 rounded-lg font-semibold transition-all text-white shadow-lg whitespace-nowrap"
                 >
                     Read More Blogs
                 </Link>
@@ -514,7 +516,7 @@ public class CustomerController {
 
           {/* Conclusion */}
           <section className="mb-16">
-            <div className="bg-gray-800/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
               <h2 className="text-2xl lg:text-3xl font-bold text-purple-300 mb-4">Conclusion</h2>
               <p className="text-purple-200/80 mb-4">
                 Building autonomous agents with LangChain, Next.js, and Spring Boot is not just a technical exercise—it's a gateway to the next generation of software.

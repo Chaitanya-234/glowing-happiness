@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import JsonLdArticle from '@/components/JsonLdArticle';
 import {
@@ -47,6 +48,7 @@ const checklistItems: string[] = [
 ];
 
 export default function AiSearchGuide() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -87,7 +89,7 @@ export default function AiSearchGuide() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-950/20 to-gray-900 text-white font-sans">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="The Death of SEO: Rise of AI Search Engines (Perplexity, SearchGPT)"
         description="Google is no longer the only gatekeeper. Explore how AI Search Engines, RAG, and GEO are rewriting the rules of the web."
@@ -97,7 +99,7 @@ export default function AiSearchGuide() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <div
           className="h-full bg-gradient-to-r from-purple-400 to-orange-500 transition-all duration-300"
           style={{ width: `${progress}%` }}
@@ -114,7 +116,7 @@ export default function AiSearchGuide() {
       </button>
 
       {/* Sidebar Navigation */}
-      <nav className={`fixed top-0 left-0 h-full bg-gray-900/95 backdrop-blur-sm border-r border-purple-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
+      <nav className={`fixed top-0 left-0 h-full /95 backdrop-blur-sm border-r border-purple-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
         <div className="p-6 overflow-y-auto h-full">
           <h2 className="text-xl font-bold text-purple-400 mb-6">Table of Contents</h2>
           <ul className="space-y-2">
@@ -141,7 +143,7 @@ export default function AiSearchGuide() {
           <div className="mt-8 p-4 bg-purple-900/30 rounded-lg">
             <div className="text-sm text-purple-300 mb-2">Optimization Score</div>
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div className="flex-1 h-2  rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-purple-400 to-orange-500 transition-all duration-300"
                   style={{ width: `${(completedItems / checklistItems.length) * 100}%` }}
@@ -216,11 +218,11 @@ export default function AiSearchGuide() {
 
                 <h3 className="text-xl font-semibold text-purple-300">The New Funnel</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                   <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                   <div className="/50 p-4 rounded-xl border border-gray-700">
                     <strong className="text-orange-400 block mb-2">Old SEO Funnel</strong>
                     <p className="text-sm">Search Query &rarr; 10 Blue Links &rarr; User Clicks &rarr; User Reads &rarr; Conversion.</p>
                   </div>
-                  <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                  <div className="/50 p-4 rounded-xl border border-gray-700">
                     <strong className="text-orange-400 block mb-2">New AI Funnel</strong>
                     <p className="text-sm">Search Query &rarr; AI Synthesis (Zero Click) &rarr; Citation (Maybe) &rarr; User Clicks (Rarely).</p>
                   </div>
@@ -301,7 +303,7 @@ export default function AiSearchGuide() {
 
           {/* GEO */}
           <section id="geo" className="mb-12 lg:mb-16 scroll-mt-24">
-            <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-8">
+            <div className="/30 border border-gray-700/50 rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
                 <Target className="text-orange-400" size={28} />
                 <h2 className="text-3xl font-bold text-white">What is GEO?</h2>
@@ -333,7 +335,7 @@ export default function AiSearchGuide() {
                 <p>
                   The infrastructure required to run an AI Search Engine is orders of magnitude more expensive than a traditional one.
                 </p>
-                <div className="bg-black/50 p-4 rounded-lg border border-gray-700 my-4 font-mono text-sm">
+                <div className="/50 p-4 rounded-lg border border-gray-700 my-4 font-mono text-sm">
                   {`User Query -> [Classifier] -> (Navigational vs Informational)
                                      |
                                      v
@@ -383,25 +385,25 @@ export default function AiSearchGuide() {
                     </tr>
                   </thead>
                   <tbody className="text-sm">
-                    <tr className="bg-gray-800/30 hover:bg-gray-800/50">
+                    <tr className="/30 hover:/50">
                       <td className="p-4 border-b border-gray-700 font-bold text-gray-200">Base Model</td>
                       <td className="p-4 border-b border-gray-700">GPT-4o / Claude 3.5 Sonnet / Llama 3 (User Selectable)</td>
                       <td className="p-4 border-b border-gray-700">Modified GPT-4o with real-time browser tool</td>
                       <td className="p-4 border-b border-gray-700">Gemini 1.5 Pro / Flash</td>
                     </tr>
-                    <tr className="bg-gray-800/30 hover:bg-gray-800/50">
+                    <tr className="/30 hover:/50">
                       <td className="p-4 border-b border-gray-700 font-bold text-gray-200">Index Freshness</td>
                       <td className="p-4 border-b border-gray-700">Near Real-time (partnerships with Yelp, TripAdvisor)</td>
                       <td className="p-4 border-b border-gray-700">Real-time Bing Index integration</td>
                       <td className="p-4 border-b border-gray-700">Real-time (The Google Index)</td>
                     </tr>
-                    <tr className="bg-gray-800/30 hover:bg-gray-800/50">
+                    <tr className="/30 hover:/50">
                       <td className="p-4 border-b border-gray-700 font-bold text-gray-200">Citation Style</td>
                       <td className="p-4 border-b border-gray-700">Aggressive numerical citations inline.</td>
                       <td className="p-4 border-b border-gray-700">Sidebar source list + inline text links.</td>
                       <td className="p-4 border-b border-gray-700">Carousel of cards at top + drop-down arrows.</td>
                     </tr>
-                     <tr className="bg-gray-800/30 hover:bg-gray-800/50">
+                     <tr className="/30 hover:/50">
                       <td className="p-4 border-b border-gray-700 font-bold text-gray-200">Bias</td>
                       <td className="p-4 border-b border-gray-700">Academic / Technical bias. Prefers Reddit & Papers.</td>
                       <td className="p-4 border-b border-gray-700">Conversational bias. Prefers news & mainstream media.</td>
@@ -418,7 +420,7 @@ export default function AiSearchGuide() {
               <p>
                 Based on reverse-engineering efforts and white papers, we believe the Citation Value ($C_v$) is calculated as a function of three variables:
               </p>
-              <div className="bg-gray-900 p-6 rounded-lg border-l-4 border-orange-500 font-mono text-sm my-6">
+              <div className=" p-6 rounded-lg border-l-4 border-orange-500 font-mono text-sm my-6">
                 {'$$ C_v = w_1 \\cdot \\text{SemanticMatch} + w_2 \\cdot \\text{InformationDensity} + w_3 \\cdot \\text{DomainTrust} $$'}
               </div>
               <ul className="list-disc pl-6 space-y-4">
@@ -443,14 +445,14 @@ export default function AiSearchGuide() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gray-800/40 p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/50 transition-colors">
+                <div className="/40 p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/50 transition-colors">
                   <h3 className="text-xl font-bold text-white mb-2">The Publisher Crisis</h3>
                   <p className="text-gray-400 text-sm">
                     If the AI answers the question, why click? This &quot;Zero-Click&quot; future threatens ad-supported business models. We are seeing a shift toward paywalls and &quot;human-only&quot; communities that AI cannot scrape.
                   </p>
                 </div>
 
-                <div className="bg-gray-800/40 p-6 rounded-xl border border-orange-500/20 hover:border-orange-500/50 transition-colors">
+                <div className="/40 p-6 rounded-xl border border-orange-500/20 hover:border-orange-500/50 transition-colors">
                   <h3 className="text-xl font-bold text-white mb-2">The Rise of APIs</h3>
                   <p className="text-gray-400 text-sm">
                     Websites are becoming APIs. Instead of rendering HTML for humans, savvy businesses are exposing JSON APIs for AI agents to consume directly, monetizing the <em>data</em> access rather than the <em>eyeball</em>.
@@ -507,7 +509,7 @@ export default function AiSearchGuide() {
                   <button
                     key={idx}
                     onClick={() => toggleChecklist(idx)}
-                    className="w-full flex items-start gap-3 bg-gray-900/50 hover:bg-gray-900/70 p-4 rounded-lg transition-all text-left group"
+                    className="w-full flex items-start gap-3 /50 hover:/70 p-4 rounded-lg transition-all text-left group"
                   >
                     {checklist[idx] ? (
                       <CheckCircle className="text-orange-400 flex-shrink-0 mt-0.5" size={20} />
@@ -525,7 +527,7 @@ export default function AiSearchGuide() {
 
           {/* Conclusion */}
           <section className="mb-16 border-t border-gray-800 pt-12">
-            <div className="bg-gray-800/50 border border-purple-500/30 rounded-xl p-8 text-center">
+            <div className="/50 border border-purple-500/30 rounded-xl p-8 text-center">
               <h2 className="text-3xl font-bold text-white mb-4">Adapt or Die</h2>
               <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
                 SEO is not dead; it is evolving. The era of keyword stuffing is over. The era of semantic authority has begun.
@@ -540,7 +542,7 @@ export default function AiSearchGuide() {
                 </Link>
                 <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 px-8 py-4 rounded-full font-bold transition-all text-white"
+                    className="inline-flex items-center gap-2  hover: px-8 py-4 rounded-full font-bold transition-all text-white"
                 >
                     Read More Articles <ArrowRight size={20} />
                 </Link>

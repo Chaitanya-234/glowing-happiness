@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import JsonLdArticle from '@/components/JsonLdArticle';
 import {
@@ -88,6 +89,7 @@ const concepts: Concept[] = [
 ];
 
 export default function ModelMergingGuide() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -133,7 +135,7 @@ export default function ModelMergingGuide() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-green-950 to-black text-white font-sans">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Model Merging Guide: Creating State-of-the-Art LLMs Without Training"
         description="Training LLMs is expensive. Merging them is cheap. Learn how to combine Mistral, Llama 3, and other models using MergeKit to create powerful 'Frankenmerges' without a GPU farm."
@@ -143,7 +145,7 @@ export default function ModelMergingGuide() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <div
           className="h-full bg-gradient-to-r from-green-400 to-emerald-600 transition-all duration-300"
           style={{ width: `${progress}%` }}
@@ -160,7 +162,7 @@ export default function ModelMergingGuide() {
       </button>
 
       {/* Sidebar Navigation */}
-      <nav className={`fixed top-0 left-0 h-full bg-gray-900/95 backdrop-blur-sm border-r border-emerald-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
+      <nav className={`fixed top-0 left-0 h-full /95 backdrop-blur-sm border-r border-emerald-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
         <div className="p-6 overflow-y-auto h-full">
           <h2 className="text-xl font-bold text-emerald-400 mb-6">Table of Contents</h2>
           <ul className="space-y-2">
@@ -187,7 +189,7 @@ export default function ModelMergingGuide() {
           <div className="mt-8 p-4 bg-emerald-900/30 rounded-lg">
             <div className="text-sm text-emerald-300 mb-2">Merge Recipe Status</div>
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div className="flex-1 h-2  rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-green-400 to-emerald-600 transition-all duration-300"
                   style={{ width: `${(completedItems / checklistItems.length) * 100}%` }}
@@ -251,32 +253,32 @@ export default function ModelMergingGuide() {
 
           {/* Why Merge? */}
           <section id="why-merge" className="mb-12 lg:mb-16">
-            <div className="bg-gray-800/50 border border-emerald-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-emerald-500/30 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-6">
                 <Scale className="text-emerald-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-emerald-100">Why Merge Models?</h2>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-gray-900 p-6 rounded-lg border border-gray-700">
+                  <div className=" p-6 rounded-lg border border-gray-700">
                       <h3 className="text-xl font-bold text-teal-300 mb-3">💰 Cost Efficiency</h3>
                       <p className="text-gray-400">
                           Pre-training Llama 3 70B costs millions. Fine-tuning it costs thousands. Merging two fine-tuned versions of Llama 3 70B costs <strong>zero</strong> (aside from the RAM to load them). It is computationally practically free.
                       </p>
                   </div>
-                   <div className="bg-gray-900 p-6 rounded-lg border border-gray-700">
+                   <div className=" p-6 rounded-lg border border-gray-700">
                       <h3 className="text-xl font-bold text-teal-300 mb-3">🧠 Skill Combination</h3>
                       <p className="text-gray-400">
                           Imagine you have "WizardMath-7B" (great at math) and "CodeLlama-7B" (great at code). Merging them can create a model that is good at <em>both</em>, effectively multitasking without multi-task training.
                       </p>
                   </div>
-                  <div className="bg-gray-900 p-6 rounded-lg border border-gray-700">
+                  <div className=" p-6 rounded-lg border border-gray-700">
                       <h3 className="text-xl font-bold text-teal-300 mb-3">📈 Generalization</h3>
                       <p className="text-gray-400">
                           Merged models often suffer less from overfitting. By averaging the weights of multiple diverse fine-tunes, you cancel out the "noise" of specific datasets and keep the "signal" of general reasoning.
                       </p>
                   </div>
-                  <div className="bg-gray-900 p-6 rounded-lg border border-gray-700">
+                  <div className=" p-6 rounded-lg border border-gray-700">
                       <h3 className="text-xl font-bold text-teal-300 mb-3">🚀 Performance</h3>
                       <p className="text-gray-400">
                           Empirically, merges dominate the leaderboards. Techniques like "Model Soups" have been proven in academia to improve accuracy on ImageNet, and the same holds true for NLP.
@@ -302,10 +304,10 @@ export default function ModelMergingGuide() {
                 <div key={concept.id} className="mb-4">
                   <button
                     onClick={() => toggleSection(concept.id)}
-                    className="w-full bg-gray-800/80 hover:bg-gray-700 p-5 rounded-lg transition-all flex items-center justify-between border border-gray-600"
+                    className="w-full /80 hover: p-5 rounded-lg transition-all flex items-center justify-between border border-gray-600"
                   >
                     <div className="flex items-center gap-4">
-                      <span className="text-3xl bg-gray-900 p-2 rounded-md">{concept.icon}</span>
+                      <span className="text-3xl  p-2 rounded-md">{concept.icon}</span>
                       <div className="text-left">
                         <span className="block font-bold text-emerald-300 text-lg">{concept.title}</span>
                       </div>
@@ -314,9 +316,9 @@ export default function ModelMergingGuide() {
                   </button>
 
                   {expandedSections[concept.id] && (
-                    <div className="bg-gray-900/80 p-6 rounded-b-lg border-t-0 border-x border-b border-gray-600 mt-0">
+                    <div className="/80 p-6 rounded-b-lg border-t-0 border-x border-b border-gray-600 mt-0">
                       <p className="text-gray-300 mb-4 text-base leading-relaxed font-medium">{concept.description}</p>
-                      <div className="bg-black/30 p-4 rounded text-sm text-gray-400 leading-relaxed border-l-2 border-emerald-500/50">
+                      <div className="/30 p-4 rounded text-sm text-gray-400 leading-relaxed border-l-2 border-emerald-500/50">
                         {concept.details}
                       </div>
                     </div>
@@ -328,7 +330,7 @@ export default function ModelMergingGuide() {
 
            {/* Hardware Requirements */}
            <section id="hardware" className="mb-12 lg:mb-16">
-            <div className="bg-gray-900 border border-gray-700 rounded-xl p-6 lg:p-8">
+            <div className=" border border-gray-700 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-6">
                 <Server className="text-teal-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-teal-100">Hardware Requirements</h2>
@@ -340,7 +342,7 @@ export default function ModelMergingGuide() {
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                     <thead>
-                        <tr className="bg-gray-800 text-emerald-300 border-b border-gray-700">
+                        <tr className=" text-emerald-300 border-b border-gray-700">
                             <th className="p-4">Model Size</th>
                             <th className="p-4">Minimum RAM (CPU)</th>
                             <th className="p-4">Recommended VRAM (GPU)</th>
@@ -348,19 +350,19 @@ export default function ModelMergingGuide() {
                         </tr>
                     </thead>
                     <tbody className="text-gray-400 text-sm">
-                        <tr className="border-b border-gray-800 hover:bg-gray-800/50">
+                        <tr className="border-b border-gray-800 hover:/50">
                             <td className="p-4 font-bold text-white">7B / 8B</td>
                             <td className="p-4">24 GB</td>
                             <td className="p-4">16 GB (optional)</td>
                             <td className="p-4">30 GB</td>
                         </tr>
-                         <tr className="border-b border-gray-800 hover:bg-gray-800/50">
+                         <tr className="border-b border-gray-800 hover:/50">
                             <td className="p-4 font-bold text-white">70B</td>
                             <td className="p-4">160 GB</td>
                             <td className="p-4">2x A100 (80GB)</td>
                             <td className="p-4">300 GB</td>
                         </tr>
-                        <tr className="border-b border-gray-800 hover:bg-gray-800/50">
+                        <tr className="border-b border-gray-800 hover:/50">
                             <td className="p-4 font-bold text-white">Mixture of Experts</td>
                             <td className="p-4">128 GB</td>
                             <td className="p-4">1x A100 (80GB)</td>
@@ -378,7 +380,7 @@ export default function ModelMergingGuide() {
 
           {/* MergeKit Section */}
           <section id="mergekit" className="mb-12 lg:mb-16">
-            <div className="bg-gray-800/50 border border-emerald-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-emerald-500/30 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-4">
                 <Code className="text-emerald-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-emerald-100">Using MergeKit</h2>
@@ -393,8 +395,8 @@ export default function ModelMergingGuide() {
                 </p>
               </div>
 
-              <div className="bg-black rounded-lg overflow-hidden border border-gray-700 shadow-lg mb-6">
-                <div className="bg-gray-900 px-4 py-3 flex items-center justify-between border-b border-gray-800">
+              <div className=" rounded-lg overflow-hidden border border-gray-700 shadow-lg mb-6">
+                <div className=" px-4 py-3 flex items-center justify-between border-b border-gray-800">
                   <span className="text-sm text-gray-400 font-mono">config.yml</span>
                   <div className="flex gap-1.5">
                     <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -428,7 +430,7 @@ export default function ModelMergingGuide() {
                   Run the merge with a single command:
               </p>
 
-               <div className="bg-black rounded-lg overflow-hidden border border-gray-700 shadow-lg">
+               <div className=" rounded-lg overflow-hidden border border-gray-700 shadow-lg">
                 <pre className="p-4 overflow-x-auto text-sm text-gray-300 font-mono">
                   <code>
                     <span className="text-green-400">$</span> pip install mergekit<br/>
@@ -441,7 +443,7 @@ export default function ModelMergingGuide() {
 
           {/* Evaluation Section */}
           <section id="evaluation" className="mb-12 lg:mb-16">
-            <div className="bg-gray-900 border border-gray-700 rounded-xl p-6 lg:p-8">
+            <div className=" border border-gray-700 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-6">
                 <Beaker className="text-teal-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-teal-100">Evaluation: Truth vs Vibes</h2>
@@ -452,13 +454,13 @@ export default function ModelMergingGuide() {
               </p>
 
               <div className="grid md:grid-cols-2 gap-6">
-                 <div className="bg-gray-800 p-5 rounded-lg">
+                 <div className=" p-5 rounded-lg">
                     <h3 className="text-lg font-bold text-white mb-2">📊 Benchmarks (GSM8K, ARC)</h3>
                     <p className="text-gray-400 text-sm">
                         Merged models often accidentally train on the test set ("data contamination") because they combine so many sources. High scores on Hugging Face Leaderboard are necessary for attention but not sufficient for quality.
                     </p>
                  </div>
-                 <div className="bg-gray-800 p-5 rounded-lg">
+                 <div className=" p-5 rounded-lg">
                     <h3 className="text-lg font-bold text-white mb-2">✨ Vibes (MT-Bench, Chatbot Arena)</h3>
                     <p className="text-gray-400 text-sm">
                         The ultimate test is "Vibes". Does the model feel smart? Does it follow instructions? Using LLM-as-a-Judge (GPT-4 grading your model's responses) is currently the best proxy for human preference.
@@ -491,7 +493,7 @@ export default function ModelMergingGuide() {
 
           {/* Future Section */}
           <section id="future" className="mb-16">
-             <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 lg:p-8">
+             <div className="/50 border border-gray-700 rounded-xl p-6 lg:p-8">
                 <div className="flex items-center gap-3 mb-4">
                     <Cpu className="text-purple-400" size={28} />
                     <h2 className="text-2xl lg:text-3xl font-bold text-purple-100">The Future: Evolutionary Merging</h2>
@@ -526,7 +528,7 @@ export default function ModelMergingGuide() {
                   <button
                     key={idx}
                     onClick={() => toggleChecklist(idx)}
-                    className="w-full flex items-start gap-3 bg-gray-900/50 hover:bg-gray-900/70 p-4 rounded-lg transition-all text-left group"
+                    className="w-full flex items-start gap-3 /50 hover:/70 p-4 rounded-lg transition-all text-left group"
                   >
                     {checklist[idx] ? (
                       <CheckCircle className="text-green-400 flex-shrink-0 mt-0.5" size={20} />
@@ -562,7 +564,7 @@ export default function ModelMergingGuide() {
                 </Link>
                 <Link
                     href="/blog"
-                    className="inline-block bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-lg font-semibold transition-all text-white shadow-lg whitespace-nowrap"
+                    className="inline-block  hover: px-6 py-3 rounded-lg font-semibold transition-all text-white shadow-lg whitespace-nowrap"
                 >
                     Back to Blog
                 </Link>
@@ -574,11 +576,11 @@ export default function ModelMergingGuide() {
           <section className="mb-16">
              <h2 className="text-2xl font-bold text-gray-200 mb-6">Related Topics</h2>
              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Link href="/blog/rise-of-small-language-models-slm-llama-phi-edge" className="block p-4 bg-gray-800/40 border border-gray-700 rounded-lg hover:bg-gray-800 transition-all group">
+                <Link href="/blog/rise-of-small-language-models-slm-llama-phi-edge" className="block p-4 /40 border border-gray-700 rounded-lg hover: transition-all group">
                     <h3 className="font-bold text-emerald-300 group-hover:text-white transition-colors">Small Language Models</h3>
                     <p className="text-sm text-gray-500 mt-2">Perfect candidates for merging.</p>
                 </Link>
-                <Link href="/blog/synthetic-data-engineering-guide" className="block p-4 bg-gray-800/40 border border-gray-700 rounded-lg hover:bg-gray-800 transition-all group">
+                <Link href="/blog/synthetic-data-engineering-guide" className="block p-4 /40 border border-gray-700 rounded-lg hover: transition-all group">
                     <h3 className="font-bold text-emerald-300 group-hover:text-white transition-colors">Synthetic Data</h3>
                     <p className="text-sm text-gray-500 mt-2">Generate data to fine-tune your experts.</p>
                 </Link>

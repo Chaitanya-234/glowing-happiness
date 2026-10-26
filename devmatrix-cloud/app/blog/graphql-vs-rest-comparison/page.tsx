@@ -1,9 +1,11 @@
+'use client';
 // app/blog/graphql-vs-rest-comparison/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'GraphQL vs REST: Choosing the Right API Architecture in 2025 | DevMetrix',
   description: 'Compare GraphQL and REST APIs with real use cases, pros and cons, security implications, and migration strategies for existing applications.',
   keywords: ['graphql', 'rest api', 'graphql vs rest', 'api architecture', 'api design', 'graphql security'],
@@ -16,8 +18,9 @@ export const metadata: Metadata = {
 };
 
 export default function GraphQLvsRESTGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="GraphQL vs REST: Choosing the Right API Architecture"
         description="Compare GraphQL and REST APIs with use cases, pros and cons, and migration strategies for existing applications."

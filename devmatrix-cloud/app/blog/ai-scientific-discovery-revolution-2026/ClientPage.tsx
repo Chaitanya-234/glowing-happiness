@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import AdContainer from '@/components/AdContainer';
 import JsonLdArticle from '@/components/JsonLdArticle';
@@ -37,6 +38,7 @@ const sections: Section[] = [
 ];
 
 export default function AiSciencePost() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(0);
@@ -70,7 +72,7 @@ export default function AiSciencePost() {
   };
 
   return (
-    <div className="min-h-screen bg-[#020410] text-gray-200 font-sans selection:bg-teal-500/30 selection:text-teal-100">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="AI Scientists: How Artificial Intelligence is Accelerating Scientific Discovery and Solving Humanity's Greatest Challenges"
         description="Explore how AI is transforming scientific research across medicine, climate science, and physics. Discover breakthrough AI technologies accelerating discovery and solving complex problems."
@@ -80,7 +82,7 @@ export default function AiSciencePost() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-900 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <motion.div
           className="h-full bg-gradient-to-r from-teal-400 via-blue-500 to-indigo-600"
           style={{ width: `${progress}%` }}
@@ -248,7 +250,7 @@ export default function AiSciencePost() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 hover:border-pink-500/50 transition-all group">
+                <div className="/50 p-6 rounded-2xl border border-gray-800 hover:border-pink-500/50 transition-all group">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="p-3 bg-pink-900/30 rounded-lg text-pink-400 group-hover:text-pink-300">
                       <FlaskRound size={24} />
@@ -260,7 +262,7 @@ export default function AiSciencePost() {
                   </p>
                 </div>
 
-                <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 hover:border-teal-500/50 transition-all group">
+                <div className="/50 p-6 rounded-2xl border border-gray-800 hover:border-teal-500/50 transition-all group">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="p-3 bg-teal-900/30 rounded-lg text-teal-400 group-hover:text-teal-300">
                       <ShieldAlert size={24} />
@@ -272,7 +274,7 @@ export default function AiSciencePost() {
                   </p>
                 </div>
 
-                 <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 hover:border-blue-500/50 transition-all group">
+                 <div className="/50 p-6 rounded-2xl border border-gray-800 hover:border-blue-500/50 transition-all group">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="p-3 bg-blue-900/30 rounded-lg text-blue-400 group-hover:text-blue-300">
                       <Activity size={24} />
@@ -384,7 +386,7 @@ export default function AiSciencePost() {
 
           {/* Conclusion */}
           <section className="mb-16 border-t border-teal-900/50 pt-12">
-            <div className="bg-black/50 border border-teal-500/30 rounded-xl p-10 text-center relative overflow-hidden">
+            <div className="/50 border border-teal-500/30 rounded-xl p-10 text-center relative overflow-hidden">
                <div className="absolute inset-0 bg-teal-500/5 z-0"></div>
               <h2 className="text-3xl font-bold text-white mb-4 relative z-10">A New Era of Discovery</h2>
               <p className="text-gray-400 mb-8 max-w-2xl mx-auto relative z-10">
@@ -400,7 +402,7 @@ export default function AiSciencePost() {
                 </Link>
                 <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 px-8 py-4 rounded-full font-bold transition-all text-white border border-gray-700"
+                    className="inline-flex items-center gap-2  hover: px-8 py-4 rounded-full font-bold transition-all text-white border border-gray-700"
                 >
                     Read More Articles <ArrowRight size={20} />
                 </Link>

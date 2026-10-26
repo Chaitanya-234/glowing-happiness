@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import JsonLdArticle from '@/components/JsonLdArticle';
 import {
@@ -50,6 +51,7 @@ const checklistItems: string[] = [
 ];
 
 export default function SpatialIntelligenceGuide() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -90,7 +92,7 @@ export default function SpatialIntelligenceGuide() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-950/20 to-gray-900 text-white font-sans">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Spatial Intelligence: Beyond Generative AI to World Understanding"
         description="Moving from text generation to 3D world understanding. A deep dive into World Models, V-JEPA, and the future of Embodied AI."
@@ -100,7 +102,7 @@ export default function SpatialIntelligenceGuide() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <div
           className="h-full bg-gradient-to-r from-emerald-400 to-cyan-500 transition-all duration-300"
           style={{ width: `${progress}%` }}
@@ -117,7 +119,7 @@ export default function SpatialIntelligenceGuide() {
       </button>
 
       {/* Sidebar Navigation */}
-      <nav className={`fixed top-0 left-0 h-full bg-gray-900/95 backdrop-blur-sm border-r border-indigo-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
+      <nav className={`fixed top-0 left-0 h-full /95 backdrop-blur-sm border-r border-indigo-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
         <div className="p-6 overflow-y-auto h-full">
           <h2 className="text-xl font-bold text-indigo-400 mb-6">Table of Contents</h2>
           <ul className="space-y-2">
@@ -144,7 +146,7 @@ export default function SpatialIntelligenceGuide() {
           <div className="mt-8 p-4 bg-indigo-900/30 rounded-lg">
             <div className="text-sm text-indigo-300 mb-2">Readiness Checklist</div>
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div className="flex-1 h-2  rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-emerald-400 to-cyan-500 transition-all duration-300"
                   style={{ width: `${(completedItems / checklistItems.length) * 100}%` }}
@@ -336,7 +338,7 @@ export default function SpatialIntelligenceGuide() {
                 <p>
                   Meta&apos;s V-JEPA is a non-generative model. It learns by masking out parts of a video in both space and time and trying to predict the abstract representation of the missing parts.
                 </p>
-                <div className="bg-black/50 p-4 rounded-lg border border-gray-700 my-4 font-mono text-sm">
+                <div className="/50 p-4 rounded-lg border border-gray-700 my-4 font-mono text-sm">
                   {`Input Video -> Encoder -> [Latent State t]
                                    |
                                    v
@@ -362,7 +364,7 @@ Target Video -> Encoder -> [True Latent State t+1]
 
           {/* Robotics */}
           <section id="robotics" className="mb-12 lg:mb-16 scroll-mt-24">
-            <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-8">
+            <div className="/30 border border-gray-700/50 rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
                 <Activity className="text-blue-400" size={28} />
                 <h2 className="text-3xl font-bold text-white">Embodied Intelligence</h2>
@@ -395,7 +397,7 @@ Target Video -> Encoder -> [True Latent State t+1]
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-gray-800/40 p-6 rounded-xl border border-emerald-500/20 hover:border-emerald-500/50 transition-colors">
+                <div className="/40 p-6 rounded-xl border border-emerald-500/20 hover:border-emerald-500/50 transition-colors">
                   <div className="h-12 w-12 bg-emerald-900/50 rounded-full flex items-center justify-center mb-4">
                     <Box className="text-emerald-400" />
                   </div>
@@ -405,7 +407,7 @@ Target Video -> Encoder -> [True Latent State t+1]
                   </p>
                 </div>
 
-                <div className="bg-gray-800/40 p-6 rounded-xl border border-blue-500/20 hover:border-blue-500/50 transition-colors">
+                <div className="/40 p-6 rounded-xl border border-blue-500/20 hover:border-blue-500/50 transition-colors">
                   <div className="h-12 w-12 bg-blue-900/50 rounded-full flex items-center justify-center mb-4">
                     <Eye className="text-blue-400" />
                   </div>
@@ -415,7 +417,7 @@ Target Video -> Encoder -> [True Latent State t+1]
                   </p>
                 </div>
 
-                <div className="bg-gray-800/40 p-6 rounded-xl border border-cyan-500/20 hover:border-cyan-500/50 transition-colors">
+                <div className="/40 p-6 rounded-xl border border-cyan-500/20 hover:border-cyan-500/50 transition-colors">
                   <div className="h-12 w-12 bg-cyan-900/50 rounded-full flex items-center justify-center mb-4">
                     <Globe className="text-cyan-400" />
                   </div>
@@ -482,7 +484,7 @@ Target Video -> Encoder -> [True Latent State t+1]
                   <button
                     key={idx}
                     onClick={() => toggleChecklist(idx)}
-                    className="w-full flex items-start gap-3 bg-gray-900/50 hover:bg-gray-900/70 p-4 rounded-lg transition-all text-left group"
+                    className="w-full flex items-start gap-3 /50 hover:/70 p-4 rounded-lg transition-all text-left group"
                   >
                     {checklist[idx] ? (
                       <CheckCircle className="text-emerald-400 flex-shrink-0 mt-0.5" size={20} />
@@ -500,7 +502,7 @@ Target Video -> Encoder -> [True Latent State t+1]
 
           {/* Conclusion */}
           <section className="mb-16 border-t border-gray-800 pt-12">
-            <div className="bg-gray-800/50 border border-emerald-500/30 rounded-xl p-8 text-center">
+            <div className="/50 border border-emerald-500/30 rounded-xl p-8 text-center">
               <h2 className="text-3xl font-bold text-white mb-4">The World is Not Flat</h2>
               <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
                 Spatial Intelligence is the next great leap. It brings the power of AI out of the screen and into the room with you. Whether you are building drones, AR apps, or smart cities, the future is 3D.
@@ -515,7 +517,7 @@ Target Video -> Encoder -> [True Latent State t+1]
                 </Link>
                 <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 px-8 py-4 rounded-full font-bold transition-all text-white"
+                    className="inline-flex items-center gap-2  hover: px-8 py-4 rounded-full font-bold transition-all text-white"
                 >
                     Read More Articles <ArrowRight size={20} />
                 </Link>

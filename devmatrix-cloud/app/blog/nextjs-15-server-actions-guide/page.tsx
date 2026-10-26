@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import JsonLdArticle from '@/components/JsonLdArticle';
 import {
@@ -33,6 +34,7 @@ interface Concept {
 }
 
 export default function ServerActionsGuide() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -123,7 +125,7 @@ export default function ServerActionsGuide() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white font-sans">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Next.js 15 Server Actions: The Complete Guide for 2025"
         description="Master Next.js 15 Server Actions with this comprehensive guide. Learn how to build type-safe, efficient data mutations with Spring Boot integration."
@@ -133,7 +135,7 @@ export default function ServerActionsGuide() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <div
           className="h-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-300"
           style={{ width: `${progress}%` }}
@@ -150,7 +152,7 @@ export default function ServerActionsGuide() {
       </button>
 
       {/* Sidebar Navigation */}
-      <nav className={`fixed top-0 left-0 h-full bg-gray-900/95 backdrop-blur-sm border-r border-purple-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
+      <nav className={`fixed top-0 left-0 h-full /95 backdrop-blur-sm border-r border-purple-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
         <div className="p-6 overflow-y-auto h-full">
           <h2 className="text-xl font-bold text-purple-400 mb-6">Table of Contents</h2>
           <ul className="space-y-2">
@@ -177,7 +179,7 @@ export default function ServerActionsGuide() {
           <div className="mt-8 p-4 bg-purple-900/30 rounded-lg">
             <div className="text-sm text-purple-300 mb-2">Checklist Progress</div>
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div className="flex-1 h-2  rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-300"
                   style={{ width: `${(completedItems / checklistItems.length) * 100}%` }}
@@ -255,7 +257,7 @@ export default function ServerActionsGuide() {
                   </button>
 
                   {expandedSections[concept.id] && (
-                    <div className="bg-gray-900/50 p-4 rounded-b-lg border-t-0 border border-purple-500/20 mt-0">
+                    <div className="/50 p-4 rounded-b-lg border-t-0 border border-purple-500/20 mt-0">
                       <p className="text-purple-200/80 mb-3">{concept.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {concept.benefits.map((benefit, idx) => (
@@ -273,7 +275,7 @@ export default function ServerActionsGuide() {
 
           {/* Implementation Section */}
           <section id="implementation" className="mb-12 lg:mb-16">
-            <div className="bg-gray-800/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-4">
                 <Code className="text-purple-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-purple-300">Implementing Server Actions</h2>
@@ -283,7 +285,7 @@ export default function ServerActionsGuide() {
                 <p>Let's build a simple form that creates a user. We define the action in a separate file with the <code>'use server'</code> directive.</p>
               </div>
 
-              <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+              <div className=" rounded-lg overflow-hidden border border-gray-700">
                 <div className="bg-purple-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-purple-300 font-mono">actions/createUser.ts</span>
                   <Code size={16} className="text-purple-400" />
@@ -344,7 +346,7 @@ export async function createUser(prevState: any, formData: FormData) {
                 In many enterprise architectures, Next.js acts as the "Backend for Frontend" (BFF), while Spring Boot handles the core business logic and database interactions.
               </p>
 
-              <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+              <div className=" rounded-lg overflow-hidden border border-gray-700">
                 <div className="bg-purple-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-purple-300 font-mono">UserController.java</span>
                   <Code size={16} className="text-purple-400" />
@@ -394,7 +396,7 @@ public class CreateUserRequest {
 
           {/* Optimistic UI Section */}
           <section id="optimistic-ui" className="mb-12 lg:mb-16">
-            <div className="bg-gray-800/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-4">
                 <RefreshCw className="text-purple-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-purple-300">Optimistic UI Updates</h2>
@@ -404,7 +406,7 @@ public class CreateUserRequest {
                 Users expect instant feedback. With `useOptimistic`, you can update the UI immediately while the server action runs in the background.
               </p>
 
-              <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+              <div className=" rounded-lg overflow-hidden border border-gray-700">
                 <div className="bg-purple-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-purple-300 font-mono">components/UserForm.tsx</span>
                   <Code size={16} className="text-purple-400" />
@@ -466,7 +468,7 @@ export function UserForm({ users }: { users: User[] }) {
                   { title: 'Input Validation', desc: 'Never trust client data. Validate with Zod or Yup on the server.' },
                   { title: 'Rate Limiting', desc: 'Implement rate limiting to prevent abuse.' },
                 ].map((practice, idx) => (
-                  <div key={idx} className="bg-gray-900/50 p-4 rounded-lg border border-red-500/20">
+                  <div key={idx} className="/50 p-4 rounded-lg border border-red-500/20">
                     <h3 className="font-semibold text-red-300 mb-2">🔒 {practice.title}</h3>
                     <p className="text-sm text-purple-200/70">{practice.desc}</p>
                   </div>
@@ -490,7 +492,7 @@ export function UserForm({ users }: { users: User[] }) {
                   <button
                     key={idx}
                     onClick={() => toggleChecklist(idx)}
-                    className="w-full flex items-start gap-3 bg-gray-900/50 hover:bg-gray-900/70 p-4 rounded-lg transition-all text-left"
+                    className="w-full flex items-start gap-3 /50 hover:/70 p-4 rounded-lg transition-all text-left"
                   >
                     {checklist[idx] ? (
                       <CheckCircle className="text-blue-400 flex-shrink-0 mt-0.5" size={20} />
@@ -526,7 +528,7 @@ export function UserForm({ users }: { users: User[] }) {
                 </a>
                 <Link
                     href="/blog"
-                    className="inline-block bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-lg font-semibold transition-all text-white shadow-lg whitespace-nowrap"
+                    className="inline-block  hover: px-6 py-3 rounded-lg font-semibold transition-all text-white shadow-lg whitespace-nowrap"
                 >
                     Read More Blogs
                 </Link>
@@ -559,7 +561,7 @@ export function UserForm({ users }: { users: User[] }) {
 
           {/* Conclusion */}
           <section className="mb-16">
-            <div className="bg-gray-800/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-purple-500/30 rounded-xl p-6 lg:p-8">
               <h2 className="text-2xl lg:text-3xl font-bold text-purple-300 mb-4">Conclusion</h2>
               <p className="text-purple-200/80 mb-4">
                 Next.js 15 Server Actions represent a massive leap forward in React application architecture. They simplify data mutation, improve performance, and reduce the need for separate API layers in the frontend.

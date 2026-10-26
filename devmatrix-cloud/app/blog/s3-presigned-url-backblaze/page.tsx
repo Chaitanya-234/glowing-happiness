@@ -1,10 +1,12 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { AlertCircle, Check, Copy, DollarSign, Download, LucideIcon, Shield, Upload, Zap } from 'lucide-react';
 import { useState } from 'react';
 
 
 export default function S3PresignedUrlBackblazeBlog() {
+  const { currentTheme: theme } = useTheme();
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
   const copyToClipboard = (text: string, id: string): void => {
@@ -131,7 +133,7 @@ const response = await fetch(uploadUrl, {
  );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Mastering S3 Presigned URLs with Backblaze: A Practical Guide"
         description="Explore how to generate and use S3 presigned URLs with Backblaze B2, including code examples, security best practices, and a real-world analogy with the Newcastle vs Man City match."
@@ -168,15 +170,15 @@ const response = await fetch(uploadUrl, {
 
           {/* Key Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-12 sm:mb-16">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 text-center transform hover:scale-105 transition-transform duration-300">
+            <div className="bg-white  p-6 rounded-xl border border-gray-200 dark:border-gray-700 text-center transform hover:scale-105 transition-transform duration-300">
               <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">80%</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Lower Storage Costs</div>
             </div>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 text-center transform hover:scale-105 transition-transform duration-300">
+            <div className="bg-white  p-6 rounded-xl border border-gray-200 dark:border-gray-700 text-center transform hover:scale-105 transition-transform duration-300">
               <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">100%</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">S3 Compatible</div>
             </div>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 text-center transform hover:scale-105 transition-transform duration-300">
+            <div className="bg-white  p-6 rounded-xl border border-gray-200 dark:border-gray-700 text-center transform hover:scale-105 transition-transform duration-300">
               <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">5min</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Setup Time</div>
             </div>
@@ -184,7 +186,7 @@ const response = await fetch(uploadUrl, {
 
           {/* Introduction */}
           <section className="mb-12 sm:mb-16">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 sm:p-8 lg:p-10 border border-gray-200 dark:border-gray-700 shadow-xl">
+            <div className="bg-white  rounded-2xl p-6 sm:p-8 lg:p-10 border border-gray-200 dark:border-gray-700 shadow-xl">
               <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 <strong className="text-purple-600 dark:text-purple-400">S3 presigned URLs</strong> are cryptographically signed, 
                 time-limited links that grant temporary access to private objects in cloud storage. They're essential for secure file 
@@ -209,7 +211,7 @@ const response = await fetch(uploadUrl, {
                 It allows anyone with the link to access a private object without needing AWS credentials or authentication headers.
               </p>
               
-              <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 mb-6">
+              <div className="bg-white  rounded-xl p-4 sm:p-6 mb-6">
                 <h3 className="font-bold text-gray-900 dark:text-white mb-3 text-sm sm:text-base">The signature encodes:</h3>
                 <ul className="space-y-2 text-sm sm:text-base text-gray-700 dark:text-gray-300">
                   <li className="flex items-start gap-2">
@@ -305,7 +307,7 @@ const response = await fetch(uploadUrl, {
                       {step.num}
                     </div>
                   </div>
-                  <div className="flex-1 bg-white dark:bg-gray-800 rounded-xl p-4 sm:p-6 border border-gray-200 dark:border-gray-700">
+                  <div className="flex-1 bg-white  rounded-xl p-4 sm:p-6 border border-gray-200 dark:border-gray-700">
                     <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2">{step.title}</h3>
                     <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">{step.content}</p>
                   </div>
@@ -320,7 +322,7 @@ const response = await fetch(uploadUrl, {
               Code Examples 💻
             </h2>
             
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-200 dark:border-gray-700 mb-6">
+            <div className="bg-white  rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-200 dark:border-gray-700 mb-6">
               <div className="flex items-center gap-3 mb-4">
                 <Download className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Download (GET) - Node.js</h3>
@@ -331,7 +333,7 @@ const response = await fetch(uploadUrl, {
               <CodeBlock code={nodeJsCode} language="JavaScript" id="nodejs" />
             </div>
 
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-200 dark:border-gray-700 mb-6">
+            <div className="bg-white  rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-200 dark:border-gray-700 mb-6">
               <div className="flex items-center gap-3 mb-4">
                 <Download className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Download (GET) - Python</h3>
@@ -342,7 +344,7 @@ const response = await fetch(uploadUrl, {
               <CodeBlock code={pythonCode} language="Python" id="python" />
             </div>
 
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-200 dark:border-gray-700">
+            <div className="bg-white  rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-3 mb-4">
                 <Upload className="w-6 h-6 text-green-600 dark:text-green-400" />
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Upload (PUT) - Node.js</h3>
@@ -375,7 +377,7 @@ const response = await fetch(uploadUrl, {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6">
+                <div className="bg-white  rounded-xl p-4 sm:p-6">
                   <div className="text-2xl mb-3">🏟️</div>
                   <h4 className="font-bold text-gray-900 dark:text-white mb-2 text-sm sm:text-base">The Stadium = Storage Bucket</h4>
                   <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
@@ -383,7 +385,7 @@ const response = await fetch(uploadUrl, {
                   </p>
                 </div>
 
-                <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6">
+                <div className="bg-white  rounded-xl p-4 sm:p-6">
                   <div className="text-2xl mb-3">🎫</div>
                   <h4 className="font-bold text-gray-900 dark:text-white mb-2 text-sm sm:text-base">The Ticket = Presigned URL</h4>
                   <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
@@ -391,7 +393,7 @@ const response = await fetch(uploadUrl, {
                   </p>
                 </div>
 
-                <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6">
+                <div className="bg-white  rounded-xl p-4 sm:p-6">
                   <div className="text-2xl mb-3">🔐</div>
                   <h4 className="font-bold text-gray-900 dark:text-white mb-2 text-sm sm:text-base">Gate Security = Backblaze API</h4>
                   <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
@@ -399,7 +401,7 @@ const response = await fetch(uploadUrl, {
                   </p>
                 </div>
 
-                <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6">
+                <div className="bg-white  rounded-xl p-4 sm:p-6">
                   <div className="text-2xl mb-3">⏰</div>
                   <h4 className="font-bold text-gray-900 dark:text-white mb-2 text-sm sm:text-base">Final Whistle = Expiration</h4>
                   <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
@@ -427,7 +429,7 @@ const response = await fetch(uploadUrl, {
               <div className="inline-block min-w-full align-middle">
                 <div className="overflow-hidden border border-gray-200 dark:border-gray-700 rounded-xl">
                   <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                    <thead className="bg-gray-50 dark:bg-gray-800">
+                    <thead className=" ">
                       <tr>
                         <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs sm:text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider">
                           Feature
@@ -440,8 +442,8 @@ const response = await fetch(uploadUrl, {
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
-                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                    <tbody className="bg-white  divide-y divide-gray-200 dark:divide-gray-700">
+                      <tr className="hover: dark:hover: transition-colors">
                         <td className="px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium text-gray-900 dark:text-white">
                           Presigned URL Support
                         </td>
@@ -452,7 +454,7 @@ const response = await fetch(uploadUrl, {
                           ✅ Full SDK support
                         </td>
                       </tr>
-                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <tr className="hover: dark:hover: transition-colors">
                         <td className="px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium text-gray-900 dark:text-white">
                           Storage Cost (per GB)
                         </td>
@@ -465,7 +467,7 @@ const response = await fetch(uploadUrl, {
                           $0.023/GB (Standard)
                         </td>
                       </tr>
-                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <tr className="hover: dark:hover: transition-colors">
                         <td className="px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium text-gray-900 dark:text-white">
                           Egress/Bandwidth
                         </td>
@@ -478,7 +480,7 @@ const response = await fetch(uploadUrl, {
                           $0.09/GB
                         </td>
                       </tr>
-                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <tr className="hover: dark:hover: transition-colors">
                         <td className="px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium text-gray-900 dark:text-white">
                           API Compatibility
                         </td>
@@ -489,7 +491,7 @@ const response = await fetch(uploadUrl, {
                           Native AWS SDK
                         </td>
                       </tr>
-                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <tr className="hover: dark:hover: transition-colors">
                         <td className="px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium text-gray-900 dark:text-white">
                           Setup Complexity
                         </td>
@@ -500,7 +502,7 @@ const response = await fetch(uploadUrl, {
                           Standard AWS setup
                         </td>
                       </tr>
-                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <tr className="hover: dark:hover: transition-colors">
                         <td className="px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium text-gray-900 dark:text-white">
                           Max URL Expiry
                         </td>
@@ -562,7 +564,7 @@ const response = await fetch(uploadUrl, {
                   priority: "High"
                 }
               ].map((practice, idx) => (
-                <div key={idx} className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+                <div key={idx} className="bg-white  rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
                   <div className="flex items-start gap-4">
                     <div className="text-3xl">{practice.icon}</div>
                     <div className="flex-1">
@@ -596,7 +598,7 @@ const response = await fetch(uploadUrl, {
                   Mobile apps can request presigned PUT URLs from your backend, then upload directly to Backblaze without 
                   proxying through your servers. This saves bandwidth and reduces latency.
                 </p>
-                <div className="bg-white dark:bg-gray-900 rounded-lg p-4 text-xs sm:text-sm font-mono text-gray-800 dark:text-gray-200">
+                <div className="bg-white  rounded-lg p-4 text-xs sm:text-sm font-mono text-gray-800 dark:text-gray-200">
                   Backend → Generate PUT URL → Send to Mobile → Mobile uploads directly to B2
                 </div>
               </div>
@@ -607,7 +609,7 @@ const response = await fetch(uploadUrl, {
                   Instead of attaching large files to emails, generate short-lived presigned URLs (1-7 days) and share the link. 
                   Recipients can download without authentication.
                 </p>
-                <div className="bg-white dark:bg-gray-900 rounded-lg p-4 text-xs sm:text-sm font-mono text-gray-800 dark:text-gray-200">
+                <div className="bg-white  rounded-lg p-4 text-xs sm:text-sm font-mono text-gray-800 dark:text-gray-200">
                   Store file → Generate URL (7 days) → Email link → Recipient downloads
                 </div>
               </div>
@@ -618,7 +620,7 @@ const response = await fetch(uploadUrl, {
                   Generate presigned URLs for video content with appropriate expiry. Video players can stream directly from 
                   Backblaze with byte-range requests supported.
                 </p>
-                <div className="bg-white dark:bg-gray-900 rounded-lg p-4 text-xs sm:text-sm font-mono text-gray-800 dark:text-gray-200">
+                <div className="bg-white  rounded-lg p-4 text-xs sm:text-sm font-mono text-gray-800 dark:text-gray-200">
                   User requests video → Generate URL → HLS/MP4 streams from B2 → Expires after viewing
                 </div>
               </div>
@@ -629,7 +631,7 @@ const response = await fetch(uploadUrl, {
                   Generate reports server-side, upload to Backblaze, create a presigned URL, and share with stakeholders. 
                   Reports auto-expire after a set period.
                 </p>
-                <div className="bg-white dark:bg-gray-900 rounded-lg p-4 text-xs sm:text-sm font-mono text-gray-800 dark:text-gray-200">
+                <div className="bg-white  rounded-lg p-4 text-xs sm:text-sm font-mono text-gray-800 dark:text-gray-200">
                   Cron job → Generate PDF → Upload to B2 → Create URL (24h) → Notify users
                 </div>
               </div>
@@ -669,7 +671,7 @@ const response = await fetch(uploadUrl, {
                   code: "Check bucket settings: must be Private"
                 }
               ].map((item, idx) => (
-                <div key={idx} className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow">
+                <div key={idx} className="bg-white  rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow">
                   <div className="p-4 sm:p-6">
                     <div className="flex items-start gap-3 mb-3">
                       <div className="flex-shrink-0 w-8 h-8 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
@@ -678,7 +680,7 @@ const response = await fetch(uploadUrl, {
                       <div className="flex-1">
                         <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-2">{item.problem}</h3>
                         <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-3">{item.solution}</p>
-                        <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3 text-xs sm:text-sm font-mono text-gray-700 dark:text-gray-300">
+                        <div className="  rounded-lg p-3 text-xs sm:text-sm font-mono text-gray-700 dark:text-gray-300">
                           {item.code}
                         </div>
                       </div>
@@ -695,7 +697,7 @@ const response = await fetch(uploadUrl, {
               Performance Optimization ⚡
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <div className="bg-white  rounded-xl p-6 border border-gray-200 dark:border-gray-700">
                 <div className="text-3xl mb-4">🚀</div>
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Cache URLs Wisely</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
@@ -707,7 +709,7 @@ const response = await fetch(uploadUrl, {
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <div className="bg-white  rounded-xl p-6 border border-gray-200 dark:border-gray-700">
                 <div className="text-3xl mb-4">🌍</div>
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Use CDN Edge Caching</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
@@ -719,7 +721,7 @@ const response = await fetch(uploadUrl, {
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <div className="bg-white  rounded-xl p-6 border border-gray-200 dark:border-gray-700">
                 <div className="text-3xl mb-4">📦</div>
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Batch URL Generation</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
@@ -731,7 +733,7 @@ const response = await fetch(uploadUrl, {
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <div className="bg-white  rounded-xl p-6 border border-gray-200 dark:border-gray-700">
                 <div className="text-3xl mb-4">⏲️</div>
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Lazy Generate URLs</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
@@ -761,7 +763,7 @@ const response = await fetch(uploadUrl, {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div className="bg-white dark:bg-gray-900 rounded-xl p-6">
+                <div className="bg-white  rounded-xl p-6">
                   <div className="text-center mb-4">
                     <div className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2">AWS S3</div>
                     <div className="text-4xl font-bold text-gray-900 dark:text-white">$4,730</div>
@@ -804,7 +806,7 @@ const response = await fetch(uploadUrl, {
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-gray-900 rounded-xl p-6 text-center">
+              <div className="bg-white  rounded-xl p-6 text-center">
                 <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2">
                   Annual Savings: $56,040
                 </div>
@@ -843,7 +845,7 @@ const response = await fetch(uploadUrl, {
                   href="https://www.backblaze.com/docs/cloud-storage" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-white dark:bg-gray-900 text-purple-600 dark:text-purple-400 font-semibold rounded-lg border-2 border-purple-600 dark:border-purple-400 hover:bg-purple-50 dark:hover:bg-gray-800 transition-all duration-300"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-white  text-purple-600 dark:text-purple-400 font-semibold rounded-lg border-2 border-purple-600 dark:border-purple-400 hover:bg-purple-50 dark:hover: transition-all duration-300"
                 >
                   Read Documentation
                 </a>
@@ -856,7 +858,7 @@ const response = await fetch(uploadUrl, {
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">
               References & Further Reading 📚
             </h2>
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+            <div className="bg-white  rounded-xl p-6 border border-gray-200 dark:border-gray-700">
               <ul className="space-y-3">
                 {[
                   {

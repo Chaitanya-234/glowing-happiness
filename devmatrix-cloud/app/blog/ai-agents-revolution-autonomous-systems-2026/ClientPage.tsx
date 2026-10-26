@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import AdContainer from '@/components/AdContainer';
 import JsonLdArticle from '@/components/JsonLdArticle';
@@ -50,6 +51,7 @@ const checklistItems: string[] = [
 ];
 
 export default function AiAgentsRevolutionPost() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -90,7 +92,7 @@ export default function AiAgentsRevolutionPost() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-[#050510] text-gray-200 font-sans selection:bg-cyan-500/30 selection:text-cyan-100">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="AI Agents Revolution: How Autonomous AI Systems Are Reshaping Business Operations in 2026"
         description="AI Agents are the hottest topic in AI right now. Discover how autonomous systems are moving beyond chatbots to reshape business operations in 2026."
@@ -100,7 +102,7 @@ export default function AiAgentsRevolutionPost() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-900 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <motion.div
           className="h-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600"
           style={{ width: `${progress}%` }}
@@ -160,7 +162,7 @@ export default function AiAgentsRevolutionPost() {
               <span>READINESS SCORE</span>
               <span>{Math.round((completedItems / checklistItems.length) * 100)}%</span>
             </div>
-            <div className="h-1.5 bg-gray-900 rounded-full overflow-hidden">
+            <div className="h-1.5  rounded-full overflow-hidden">
               <motion.div
                 className="h-full bg-gradient-to-r from-cyan-500 to-blue-600"
                 initial={{ width: 0 }}
@@ -244,7 +246,7 @@ export default function AiAgentsRevolutionPost() {
                   Traditional AI (like ChatGPT in 2023) was reactive: Input &rarr; Output. An Agent, however, is active. It operates in a continuous loop:
                 </p>
 
-                <div className="my-8 p-6 bg-black/50 rounded-xl border border-blue-800/50 font-mono text-sm text-cyan-300 grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+                <div className="my-8 p-6 /50 rounded-xl border border-blue-800/50 font-mono text-sm text-cyan-300 grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
                   <div className="bg-blue-900/20 p-4 rounded-lg border border-blue-500/20">
                     <span className="block text-white font-bold mb-2">1. Perceive</span>
                     Reading emails, scanning logs, viewing UI.
@@ -281,7 +283,7 @@ export default function AiAgentsRevolutionPost() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 hover:border-cyan-500/50 transition-all group">
+                <div className="/50 p-6 rounded-2xl border border-gray-800 hover:border-cyan-500/50 transition-all group">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="p-3 bg-cyan-900/30 rounded-lg text-cyan-400 group-hover:text-cyan-300">
                       <Code size={24} />
@@ -293,7 +295,7 @@ export default function AiAgentsRevolutionPost() {
                   </p>
                 </div>
 
-                <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 hover:border-purple-500/50 transition-all group">
+                <div className="/50 p-6 rounded-2xl border border-gray-800 hover:border-purple-500/50 transition-all group">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="p-3 bg-purple-900/30 rounded-lg text-purple-400 group-hover:text-purple-300">
                       <MessageSquare size={24} />
@@ -305,7 +307,7 @@ export default function AiAgentsRevolutionPost() {
                   </p>
                 </div>
 
-                 <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 hover:border-blue-500/50 transition-all group">
+                 <div className="/50 p-6 rounded-2xl border border-gray-800 hover:border-blue-500/50 transition-all group">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="p-3 bg-blue-900/30 rounded-lg text-blue-400 group-hover:text-blue-300">
                       <Target size={24} />
@@ -317,7 +319,7 @@ export default function AiAgentsRevolutionPost() {
                   </p>
                 </div>
 
-                 <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 hover:border-pink-500/50 transition-all group">
+                 <div className="/50 p-6 rounded-2xl border border-gray-800 hover:border-pink-500/50 transition-all group">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="p-3 bg-pink-900/30 rounded-lg text-pink-400 group-hover:text-pink-300">
                       <Zap size={24} />
@@ -362,7 +364,7 @@ export default function AiAgentsRevolutionPost() {
 
                   <h3 className="text-white font-bold mt-6">2. Tool Use & API Integration</h3>
                   <p>
-                    This is the hands of the agent. Through standardized interfaces (like the Model Context Protocol - MCP), agents can connect to almost any software tool. They write SQL to query databases, use <code className="text-cyan-300 bg-gray-800 px-1 py-0.5 rounded">curl</code> to fetch web pages, and use file system APIs to manage projects.
+                    This is the hands of the agent. Through standardized interfaces (like the Model Context Protocol - MCP), agents can connect to almost any software tool. They write SQL to query databases, use <code className="text-cyan-300  px-1 py-0.5 rounded">curl</code> to fetch web pages, and use file system APIs to manage projects.
                   </p>
 
                   <h3 className="text-white font-bold mt-6">3. Memory & Context Management</h3>
@@ -420,7 +422,7 @@ export default function AiAgentsRevolutionPost() {
                 <h2 className="text-3xl font-bold text-white">How to Deploy Agents Today</h2>
               </div>
 
-              <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8">
+              <div className=" border border-gray-800 rounded-2xl p-8">
                  <h3 className="text-xl font-bold text-white mb-6">Best Practices for 2026</h3>
                  <ul className="space-y-4">
                     <li className="flex gap-4">
@@ -483,7 +485,7 @@ export default function AiAgentsRevolutionPost() {
                     className={`flex items-start gap-3 p-4 rounded-lg transition-all text-left border ${
                       checklist[idx]
                         ? 'bg-blue-900/40 border-cyan-500/50'
-                        : 'bg-black/40 border-gray-800 hover:border-cyan-500/30'
+                        : '/40 border-gray-800 hover:border-cyan-500/30'
                     }`}
                   >
                     {checklist[idx] ? (
@@ -509,7 +511,7 @@ export default function AiAgentsRevolutionPost() {
 
           {/* Conclusion */}
           <section className="mb-16 border-t border-blue-900/50 pt-12">
-            <div className="bg-black/50 border border-blue-500/30 rounded-xl p-10 text-center relative overflow-hidden">
+            <div className="/50 border border-blue-500/30 rounded-xl p-10 text-center relative overflow-hidden">
                <div className="absolute inset-0 bg-blue-500/5 z-0"></div>
               <h2 className="text-3xl font-bold text-white mb-4 relative z-10">Join the Revolution</h2>
               <p className="text-gray-400 mb-8 max-w-2xl mx-auto relative z-10">
@@ -525,7 +527,7 @@ export default function AiAgentsRevolutionPost() {
                 </Link>
                 <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 px-8 py-4 rounded-full font-bold transition-all text-white border border-gray-700"
+                    className="inline-flex items-center gap-2  hover: px-8 py-4 rounded-full font-bold transition-all text-white border border-gray-700"
                 >
                     Read More Articles <ArrowRight size={20} />
                 </Link>

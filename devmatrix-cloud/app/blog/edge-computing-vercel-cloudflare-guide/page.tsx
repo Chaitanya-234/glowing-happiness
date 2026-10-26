@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import JsonLdArticle from '@/components/JsonLdArticle';
 import {
@@ -31,6 +32,7 @@ interface Concept {
 }
 
 export default function EdgeComputingGuide() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -120,7 +122,7 @@ export default function EdgeComputingGuide() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-teal-900/20 to-gray-900 text-white font-sans">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Edge Computing with Vercel Middleware & Cloudflare Workers"
         description="Optimize performance by moving logic to the edge. A comprehensive guide to Vercel Middleware and Cloudflare Workers for Next.js developers."
@@ -130,7 +132,7 @@ export default function EdgeComputingGuide() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <div
           className="h-full bg-gradient-to-r from-teal-500 to-green-500 transition-all duration-300"
           style={{ width: `${progress}%` }}
@@ -147,7 +149,7 @@ export default function EdgeComputingGuide() {
       </button>
 
       {/* Sidebar Navigation */}
-      <nav className={`fixed top-0 left-0 h-full bg-gray-900/95 backdrop-blur-sm border-r border-teal-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
+      <nav className={`fixed top-0 left-0 h-full /95 backdrop-blur-sm border-r border-teal-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
         <div className="p-6 overflow-y-auto h-full">
           <h2 className="text-xl font-bold text-teal-400 mb-6">Table of Contents</h2>
           <ul className="space-y-2">
@@ -174,7 +176,7 @@ export default function EdgeComputingGuide() {
           <div className="mt-8 p-4 bg-teal-900/30 rounded-lg">
             <div className="text-sm text-teal-300 mb-2">Checklist Progress</div>
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div className="flex-1 h-2  rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-teal-500 to-green-500 transition-all duration-300"
                   style={{ width: `${(completedItems / checklistItems.length) * 100}%` }}
@@ -252,7 +254,7 @@ export default function EdgeComputingGuide() {
                   </button>
 
                   {expandedSections[concept.id] && (
-                    <div className="bg-gray-900/50 p-4 rounded-b-lg border-t-0 border border-teal-500/20 mt-0">
+                    <div className="/50 p-4 rounded-b-lg border-t-0 border border-teal-500/20 mt-0">
                       <p className="text-teal-200/80 mb-3">{concept.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {concept.benefits.map((benefit, idx) => (
@@ -270,7 +272,7 @@ export default function EdgeComputingGuide() {
 
           {/* Vercel Middleware Section */}
           <section id="vercel-middleware" className="mb-12 lg:mb-16">
-             <div className="bg-gray-800/50 border border-teal-500/30 rounded-xl p-6 lg:p-8">
+             <div className="/50 border border-teal-500/30 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-4">
                 <Code className="text-teal-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-teal-300">Vercel Middleware</h2>
@@ -280,7 +282,7 @@ export default function EdgeComputingGuide() {
                   Vercel Middleware runs before a request is processed on your site. It's perfect for auth, rewrites, and geolocation.
               </p>
 
-              <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+              <div className=" rounded-lg overflow-hidden border border-gray-700">
                 <div className="bg-teal-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-teal-300 font-mono">middleware.ts</span>
                   <Code size={16} className="text-teal-400" />
@@ -326,7 +328,7 @@ export const config = {
                 Cloudflare Workers are robust enough to run entire applications, not just middleware. They support KV storage and durable objects.
               </p>
 
-              <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+              <div className=" rounded-lg overflow-hidden border border-gray-700">
                 <div className="bg-green-900/30 px-4 py-2 flex items-center justify-between">
                   <span className="text-sm text-green-300 font-mono">worker.js</span>
                   <Code size={16} className="text-green-400" />
@@ -375,7 +377,7 @@ export const config = {
                   { title: 'Geo Blocking', desc: 'Easily block traffic from embargoed or high-risk countries.' },
                   { title: 'Token Verification', desc: 'Verify JWTs at the edge to offload CPU from your main API.' },
                 ].map((practice, idx) => (
-                  <div key={idx} className="bg-gray-900/50 p-4 rounded-lg border border-red-500/20">
+                  <div key={idx} className="/50 p-4 rounded-lg border border-red-500/20">
                     <h3 className="font-semibold text-red-300 mb-2">🔒 {practice.title}</h3>
                     <p className="text-sm text-teal-200/70">{practice.desc}</p>
                   </div>
@@ -399,7 +401,7 @@ export const config = {
                   <button
                     key={idx}
                     onClick={() => toggleChecklist(idx)}
-                    className="w-full flex items-start gap-3 bg-gray-900/50 hover:bg-gray-900/70 p-4 rounded-lg transition-all text-left"
+                    className="w-full flex items-start gap-3 /50 hover:/70 p-4 rounded-lg transition-all text-left"
                   >
                     {checklist[idx] ? (
                       <CheckCircle className="text-teal-400 flex-shrink-0 mt-0.5" size={20} />
@@ -435,7 +437,7 @@ export const config = {
                 </a>
                 <Link
                     href="/blog"
-                    className="inline-block bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-lg font-semibold transition-all text-white shadow-lg whitespace-nowrap"
+                    className="inline-block  hover: px-6 py-3 rounded-lg font-semibold transition-all text-white shadow-lg whitespace-nowrap"
                 >
                     Read More Blogs
                 </Link>
@@ -468,7 +470,7 @@ export const config = {
 
           {/* Conclusion */}
           <section className="mb-16">
-            <div className="bg-gray-800/50 border border-teal-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-teal-500/30 rounded-xl p-6 lg:p-8">
               <h2 className="text-2xl lg:text-3xl font-bold text-teal-300 mb-4">Conclusion</h2>
               <p className="text-teal-200/80 mb-4">
                 Edge computing is not a fad; it's the future of web architecture. It combines the performance of CDNs with the flexibility of server-side code.

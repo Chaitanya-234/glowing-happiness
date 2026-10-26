@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import JsonLdArticle from '@/components/JsonLdArticle';
 import {
@@ -86,6 +87,7 @@ const concepts: Concept[] = [
 ];
 
 export default function ComputerUseAgentGuide() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -131,7 +133,7 @@ export default function ComputerUseAgentGuide() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-950 to-black text-white font-sans">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Building AI Agents That Can Browse the Web: A Deep Dive into 'Computer Use'"
         description="The next frontier of AI is action. Learn how to build agents that can control a web browser, extract data, and perform tasks using Anthropic Computer Use and browser-use."
@@ -141,7 +143,7 @@ export default function ComputerUseAgentGuide() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <div
           className="h-full bg-gradient-to-r from-cyan-400 to-indigo-500 transition-all duration-300"
           style={{ width: `${progress}%` }}
@@ -158,7 +160,7 @@ export default function ComputerUseAgentGuide() {
       </button>
 
       {/* Sidebar Navigation */}
-      <nav className={`fixed top-0 left-0 h-full bg-gray-900/95 backdrop-blur-sm border-r border-indigo-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
+      <nav className={`fixed top-0 left-0 h-full /95 backdrop-blur-sm border-r border-indigo-500/30 w-64 transform transition-transform duration-300 z-[55] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 pt-20 lg:pt-0`}>
         <div className="p-6 overflow-y-auto h-full">
           <h2 className="text-xl font-bold text-indigo-400 mb-6">Table of Contents</h2>
           <ul className="space-y-2">
@@ -185,7 +187,7 @@ export default function ComputerUseAgentGuide() {
           <div className="mt-8 p-4 bg-indigo-900/30 rounded-lg">
             <div className="text-sm text-indigo-300 mb-2">Readiness Checklist</div>
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div className="flex-1 h-2  rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-cyan-400 to-indigo-500 transition-all duration-300"
                   style={{ width: `${(completedItems / checklistItems.length) * 100}%` }}
@@ -252,7 +254,7 @@ export default function ComputerUseAgentGuide() {
 
           {/* What is Computer Use? */}
           <section id="what-is-computer-use" className="mb-12 lg:mb-16">
-            <div className="bg-gray-800/50 border border-indigo-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-indigo-500/30 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-6">
                 <Monitor className="text-indigo-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-indigo-100">What is "Computer Use"?</h2>
@@ -274,11 +276,11 @@ export default function ComputerUseAgentGuide() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                  <div className="bg-gray-900 p-5 rounded-lg border border-gray-700">
+                  <div className=" p-5 rounded-lg border border-gray-700">
                       <h3 className="text-xl font-semibold text-cyan-300 mb-3">Traditional Automation (RPA)</h3>
                       <p className="text-sm text-gray-400">Brittle. Relies on fixed X,Y coordinates or specific CSS selectors. If the UI changes slightly (e.g., a button moves), the script breaks. Requires manual maintenance. It is deterministic but fragile.</p>
                   </div>
-                  <div className="bg-gray-900 p-5 rounded-lg border border-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+                  <div className=" p-5 rounded-lg border border-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.3)]">
                       <h3 className="text-xl font-semibold text-indigo-300 mb-3">AI Agent Automation</h3>
                       <p className="text-sm text-gray-400">Adaptive. The AI "sees" the button moved. It reads the text "Submit" and clicks it regardless of location or color. Self-healing and resilient to UI updates. It is probabilistic but robust.</p>
                   </div>
@@ -302,10 +304,10 @@ export default function ComputerUseAgentGuide() {
                 <div key={concept.id} className="mb-4">
                   <button
                     onClick={() => toggleSection(concept.id)}
-                    className="w-full bg-gray-800/80 hover:bg-gray-700 p-5 rounded-lg transition-all flex items-center justify-between border border-gray-600"
+                    className="w-full /80 hover: p-5 rounded-lg transition-all flex items-center justify-between border border-gray-600"
                   >
                     <div className="flex items-center gap-4">
-                      <span className="text-3xl bg-gray-900 p-2 rounded-md">{concept.icon}</span>
+                      <span className="text-3xl  p-2 rounded-md">{concept.icon}</span>
                       <div className="text-left">
                         <span className="block font-bold text-indigo-300 text-lg">{concept.title}</span>
                       </div>
@@ -314,7 +316,7 @@ export default function ComputerUseAgentGuide() {
                   </button>
 
                   {expandedSections[concept.id] && (
-                    <div className="bg-gray-900/80 p-6 rounded-b-lg border-t-0 border-x border-b border-gray-600 mt-0">
+                    <div className="/80 p-6 rounded-b-lg border-t-0 border-x border-b border-gray-600 mt-0">
                       <p className="text-gray-300 mb-4 text-base leading-relaxed">{concept.description}</p>
                       <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Why this matters:</h4>
                       <div className="flex flex-wrap gap-2">
@@ -333,7 +335,7 @@ export default function ComputerUseAgentGuide() {
 
           {/* Deep Dive: Accessibility Tree */}
           <section id="deep-dive-accessibility" className="mb-12 lg:mb-16">
-             <div className="bg-gray-900 border border-gray-700 rounded-xl p-6 lg:p-8">
+             <div className=" border border-gray-700 rounded-xl p-6 lg:p-8">
                 <div className="flex items-center gap-3 mb-6">
                     <Database className="text-green-400" size={28} />
                     <h2 className="text-2xl lg:text-3xl font-bold text-green-100">Deep Dive: The Accessibility Tree</h2>
@@ -354,7 +356,7 @@ export default function ComputerUseAgentGuide() {
                     <li><strong>Coordinate Mapping:</strong> Browsers can easily map nodes in the Accessibility Tree to their bounding boxes on screen. This allows the agent to say "Click the element with ID 42" instead of "Click pixel 500, 300".</li>
                 </ul>
 
-                <div className="bg-black p-4 rounded-lg border border-gray-800 font-mono text-sm text-gray-300">
+                <div className=" p-4 rounded-lg border border-gray-800 font-mono text-sm text-gray-300">
                     <p className="text-gray-500 mb-2"># Simplified Representation of AX Tree</p>
                     <div className="pl-4 border-l border-gray-700">
                         <span className="text-purple-400">RootWebArea</span> "Google Flights"<br/>
@@ -369,7 +371,7 @@ export default function ComputerUseAgentGuide() {
 
           {/* browser-use Library */}
           <section id="browser-use" className="mb-12 lg:mb-16">
-            <div className="bg-gray-800/50 border border-indigo-500/30 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-indigo-500/30 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-4">
                 <Globe className="text-indigo-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-indigo-100">The `browser-use` Library</h2>
@@ -377,7 +379,7 @@ export default function ComputerUseAgentGuide() {
 
               <div className="space-y-4 text-gray-300 mb-6 leading-relaxed">
                 <p>
-                    While you can build your own integration using Playwright and OpenAI's API, the open-source community has coalesced around a powerful library called <code className="text-cyan-300 bg-gray-900 px-1 py-0.5 rounded">browser-use</code>.
+                    While you can build your own integration using Playwright and OpenAI's API, the open-source community has coalesced around a powerful library called <code className="text-cyan-300  px-1 py-0.5 rounded">browser-use</code>.
                 </p>
                 <p>
                     It abstracts away the complexities of:
@@ -390,8 +392,8 @@ export default function ComputerUseAgentGuide() {
                 </ul>
               </div>
 
-              <div className="bg-black rounded-lg overflow-hidden border border-gray-700 shadow-lg">
-                <div className="bg-gray-900 px-4 py-3 flex items-center justify-between border-b border-gray-800">
+              <div className=" rounded-lg overflow-hidden border border-gray-700 shadow-lg">
+                <div className=" px-4 py-3 flex items-center justify-between border-b border-gray-800">
                   <span className="text-sm text-gray-400 font-mono">installation.bash</span>
                   <div className="flex gap-1.5">
                     <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -411,7 +413,7 @@ export default function ComputerUseAgentGuide() {
 
           {/* Tutorial Section */}
           <section id="tutorial" className="mb-12 lg:mb-16">
-            <div className="bg-gray-900 border border-gray-700 rounded-xl p-6 lg:p-8">
+            <div className=" border border-gray-700 rounded-xl p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-6">
                 <Code className="text-green-400" size={28} />
                 <h2 className="text-2xl lg:text-3xl font-bold text-green-100">Tutorial: Building a Flight Price Tracker</h2>
@@ -428,7 +430,7 @@ export default function ComputerUseAgentGuide() {
                     <p className="text-gray-400 mb-4">
                         We need to instantiate the `Agent` with a task and an LLM. We will use LangChain's ChatOpenAI (or ChatAnthropic) as the brain. Note that you need a valid API key in your environment variables.
                     </p>
-                    <div className="bg-black rounded-lg overflow-hidden border border-gray-800">
+                    <div className=" rounded-lg overflow-hidden border border-gray-800">
                         <pre className="p-4 overflow-x-auto text-sm font-mono text-gray-300">
 <code className="language-python">{`import os
 from langchain_openai import ChatOpenAI
@@ -453,7 +455,7 @@ llm = ChatOpenAI(model="gpt-4o", temperature=0)
                     <p className="text-gray-400 mb-4">
                         The prompt is everything. You need to be specific. Vague instructions lead to the agent getting lost or stuck in loops.
                     </p>
-                    <div className="bg-black rounded-lg overflow-hidden border border-gray-800">
+                    <div className=" rounded-lg overflow-hidden border border-gray-800">
                         <pre className="p-4 overflow-x-auto text-sm font-mono text-gray-300">
 <code className="language-python">{`async def main():
     # Define a specific, multi-step task
@@ -493,7 +495,7 @@ if __name__ == "__main__":
                     <p className="text-gray-400 mb-4">
                         Real-world sites have cookie banners, login screens, and session timeouts. The `browser-use` library can persist context using a `BrowserContext`. This allows you to log in once manually (or via script) and save the session state.
                     </p>
-                     <div className="bg-black rounded-lg overflow-hidden border border-gray-800">
+                     <div className=" rounded-lg overflow-hidden border border-gray-800">
                         <pre className="p-4 overflow-x-auto text-sm font-mono text-gray-300">
 <code className="language-python">{`from browser_use import BrowserContext
 
@@ -518,7 +520,7 @@ agent = Agent(
 
           {/* Performance & Cost */}
           <section id="performance" className="mb-12 lg:mb-16">
-            <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 lg:p-8">
+            <div className="/50 border border-gray-700 rounded-xl p-6 lg:p-8">
                 <div className="flex items-center gap-3 mb-6">
                     <Clock className="text-orange-400" size={28} />
                     <h2 className="text-2xl lg:text-3xl font-bold text-orange-100">Performance & Cost Analysis</h2>
@@ -529,7 +531,7 @@ agent = Agent(
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                    <div className="bg-gray-900 p-4 rounded-lg">
+                    <div className=" p-4 rounded-lg">
                         <h4 className="font-bold text-white mb-2">Token Consumption</h4>
                         <p className="text-sm text-gray-400">
                             A single screenshot passed to GPT-4o or Claude 3.5 Sonnet can consume <strong>1,000 to 1,500 tokens</strong> depending on resolution. A typical browsing session involves 20-50 steps.
@@ -538,7 +540,7 @@ agent = Agent(
                             <strong>Math:</strong> 30 steps * 1,500 tokens = 45,000 input tokens. At ~$5/1M tokens, a single run costs $0.20 - $0.30.
                         </p>
                     </div>
-                    <div className="bg-gray-900 p-4 rounded-lg">
+                    <div className=" p-4 rounded-lg">
                         <h4 className="font-bold text-white mb-2">Latency</h4>
                         <p className="text-sm text-gray-400">
                             Each step involves: Screenshot &rarr; Upload &rarr; LLM Inference &rarr; Action.
@@ -567,19 +569,19 @@ agent = Agent(
               </div>
 
               <div className="grid gap-6">
-                <div className="bg-gray-800/50 p-5 rounded-lg border-l-4 border-yellow-500">
+                <div className="/50 p-5 rounded-lg border-l-4 border-yellow-500">
                     <h3 className="text-lg font-bold text-white mb-2">🐢 Latency</h3>
                     <p className="text-gray-400 text-sm">
                         Taking a screenshot, uploading it to an LLM, waiting for generation, and executing an action takes time. A simple task like "book a flight" might take 2-3 minutes of autonomous browsing. This is not yet suitable for real-time user interactions.
                     </p>
                 </div>
-                <div className="bg-gray-800/50 p-5 rounded-lg border-l-4 border-yellow-500">
+                <div className="/50 p-5 rounded-lg border-l-4 border-yellow-500">
                     <h3 className="text-lg font-bold text-white mb-2">💸 Cost</h3>
                     <p className="text-gray-400 text-sm">
                         Vision models are expensive. A complex browsing session can easily consume 50k-100k input tokens due to high-res screenshots being sent at every step. Optimizations like "Set-of-Mark" prompting (only sending coordinates of bounding boxes) are crucial.
                     </p>
                 </div>
-                <div className="bg-gray-800/50 p-5 rounded-lg border-l-4 border-yellow-500">
+                <div className="/50 p-5 rounded-lg border-l-4 border-yellow-500">
                     <h3 className="text-lg font-bold text-white mb-2">🔄 Infinite Loops</h3>
                     <p className="text-gray-400 text-sm">
                         Agents often get stuck. "I clicked the button but nothing happened." "I'll click it again." "Nothing happened." You must implement maximum step limits and loop detection heuristics.
@@ -631,7 +633,7 @@ agent = Agent(
                   <button
                     key={idx}
                     onClick={() => toggleChecklist(idx)}
-                    className="w-full flex items-start gap-3 bg-gray-900/50 hover:bg-gray-900/70 p-4 rounded-lg transition-all text-left group"
+                    className="w-full flex items-start gap-3 /50 hover:/70 p-4 rounded-lg transition-all text-left group"
                   >
                     {checklist[idx] ? (
                       <CheckCircle className="text-cyan-400 flex-shrink-0 mt-0.5" size={20} />
@@ -649,7 +651,7 @@ agent = Agent(
 
           {/* Future Section */}
           <section id="future" className="mb-16">
-             <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 lg:p-8">
+             <div className="/50 border border-gray-700 rounded-xl p-6 lg:p-8">
                 <div className="flex items-center gap-3 mb-4">
                     <Cpu className="text-purple-400" size={28} />
                     <h2 className="text-2xl lg:text-3xl font-bold text-purple-100">The Future: Universal Actuation</h2>
@@ -686,7 +688,7 @@ agent = Agent(
                 </Link>
                 <Link
                     href="/blog"
-                    className="inline-block bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-lg font-semibold transition-all text-white shadow-lg whitespace-nowrap"
+                    className="inline-block  hover: px-6 py-3 rounded-lg font-semibold transition-all text-white shadow-lg whitespace-nowrap"
                 >
                     Back to Blog
                 </Link>
@@ -698,11 +700,11 @@ agent = Agent(
           <section className="mb-16">
              <h2 className="text-2xl font-bold text-gray-200 mb-6">Related Topics</h2>
              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Link href="/blog/building-ai-agents-langchain-nextjs" className="block p-4 bg-gray-800/40 border border-gray-700 rounded-lg hover:bg-gray-800 transition-all group">
+                <Link href="/blog/building-ai-agents-langchain-nextjs" className="block p-4 /40 border border-gray-700 rounded-lg hover: transition-all group">
                     <h3 className="font-bold text-indigo-300 group-hover:text-white transition-colors">AI Agents with LangChain</h3>
                     <p className="text-sm text-gray-500 mt-2">The foundational guide to building autonomous agents.</p>
                 </Link>
-                <Link href="/blog/multimodal-ai-revolution-gpt4o-gemini-building-apps" className="block p-4 bg-gray-800/40 border border-gray-700 rounded-lg hover:bg-gray-800 transition-all group">
+                <Link href="/blog/multimodal-ai-revolution-gpt4o-gemini-building-apps" className="block p-4 /40 border border-gray-700 rounded-lg hover: transition-all group">
                     <h3 className="font-bold text-indigo-300 group-hover:text-white transition-colors">Multimodal AI</h3>
                     <p className="text-sm text-gray-500 mt-2">Understanding VLMs that power computer use.</p>
                 </Link>

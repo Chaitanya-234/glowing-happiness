@@ -1,9 +1,11 @@
+'use client';
 // app/blog/javascript-async-patterns/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Mastering JavaScript Async Patterns: Promises, Async/Await | DevMetrix',
   description: 'Deep dive into asynchronous JavaScript from callbacks to modern async/await patterns. Real-world examples and best practices.',
   keywords: ['javascript async', 'promises', 'async await', 'callbacks', 'asynchronous javascript'],
@@ -16,8 +18,9 @@ export const metadata: Metadata = {
 };
 
 export default function JavaScriptAsyncGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Mastering JavaScript Async Patterns: Promises, Async/Await"
         description="Deep dive into asynchronous JavaScript, from callbacks to modern async/await patterns with real-world examples."

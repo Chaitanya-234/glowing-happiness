@@ -1,17 +1,20 @@
+'use client';
 // app/blog/base64-encoding-explained/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Base64 Encoding Explained: When and How to Use It | DevMetrix',
   description: 'Understand Base64 encoding, its use cases, implementation, performance implications, and alternatives for modern web development.',
   keywords: ['base64', 'encoding', 'data encoding', 'base64 javascript', 'binary data'],
 };
 
 export default function Base64EncodingGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Base64 Encoding Explained: When and How to Use It"
         description="Understand Base64 encoding, its use cases, performance implications, and alternatives for modern web development."

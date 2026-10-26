@@ -1,17 +1,20 @@
+'use client';
 // app/blog/markdown-documentation-guide/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Writing Better Documentation with Markdown: Complete Guide | DevMetrix',
   description: 'Learn how to write professional documentation using Markdown. GitHub-flavored syntax, best practices, and real-world examples.',
   keywords: ['markdown', 'documentation', 'github markdown', 'readme', 'technical writing'],
 };
 
 export default function MarkdownDocumentationGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Writing Better Documentation with Markdown: Complete Guide"
         description="Create professional documentation using Markdown with advanced formatting, GitHub-flavored syntax, and automation tools."

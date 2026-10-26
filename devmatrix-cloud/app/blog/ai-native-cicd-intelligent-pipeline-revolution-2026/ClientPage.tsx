@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
@@ -21,6 +22,7 @@ import AdContainer from '@/components/AdContainer';
 import BlogFilters from '@/components/blog/BlogFilters';
 
 export default function ClientPage() {
+  const { currentTheme: theme } = useTheme();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -51,7 +53,7 @@ export default function ClientPage() {
   };
 
   if (!isMounted) {
-    return <div className="min-h-screen bg-[#0c1120]" />; // Prevent hydration mismatch
+    return <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`} />; // Prevent hydration mismatch
   }
 
   return (
@@ -223,7 +225,7 @@ export default function ClientPage() {
                 The first and most painful problem is test execution time. A comprehensive test suite for a large application might contain tens of thousands of individual tests. Running all of them on every single code change is wasteful on a scale that is hard to overstate. Most of those tests have absolutely nothing to do with the code that was just changed. Running them anyway wastes developer time, wastes cloud compute dollars, and — most critically — slows down the feedback loop. The whole point of CI is to give developers fast feedback about whether their code works. When the pipeline takes an hour to tell you something is broken, you have already moved on mentally to the next task. The fast feedback loop is broken, and with it, a significant portion of CI&apos;s value proposition.
               </p>
 
-              <div className="my-8 p-6 bg-gray-50 rounded-xl border border-gray-200 flex gap-4 items-start">
+              <div className="my-8 p-6  rounded-xl border border-gray-200 flex gap-4 items-start">
                  <div className="p-3 bg-red-100 rounded-lg text-red-600 shrink-0">
                     <Zap size={24} />
                  </div>
@@ -246,7 +248,7 @@ export default function ClientPage() {
           </motion.div>
 
           {/* PULL QUOTE 1 */}
-          <div className="w-full bg-black py-12 -mx-4 px-4 md:px-0 md:-mx-12 lg:-mx-24 mb-16 transform -rotate-1 shadow-2xl overflow-hidden relative">
+          <div className="w-full  py-12 -mx-4 px-4 md:px-0 md:-mx-12 lg:-mx-24 mb-16 transform -rotate-1 shadow-2xl overflow-hidden relative">
             <div className="absolute inset-0 bg-cyan-900/20" />
             <p className="relative z-10 text-center text-3xl md:text-4xl font-bebas text-white tracking-wider max-w-4xl mx-auto">
               &quot;The era of running every test on every commit is over — and good riddance.&quot;
@@ -375,7 +377,7 @@ export default function ClientPage() {
           {/* SECTION 6: SECURITY */}
           <motion.div
             id="section-5"
-            className="mb-16 pl-6 border-l-4 border-gray-900 bg-gray-50 p-8 rounded-r-2xl"
+            className="mb-16 pl-6 border-l-4 border-gray-900  p-8 rounded-r-2xl"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -466,7 +468,7 @@ export default function ClientPage() {
                <span className="font-bold">Back to Blog</span>
             </Link>
             <div className="flex gap-4">
-               <button className="p-2 rounded-full hover:bg-gray-100 text-gray-600 transition-colors">
+               <button className="p-2 rounded-full hover: text-gray-600 transition-colors">
                   <Share2 size={20} />
                </button>
             </div>

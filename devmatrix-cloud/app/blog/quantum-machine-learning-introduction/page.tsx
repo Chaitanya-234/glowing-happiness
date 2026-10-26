@@ -1,12 +1,15 @@
+'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 
-export const metadata = {
+const metadata = {
   title: 'Quantum Machine Learning: The Future of AI on Qubits | DevMetrix',
   description: 'A deep dive into Quantum Machine Learning (QML). Understand Qubits, Variational Quantum Circuits (VQC), Quantum Neural Networks (QNN), and how to build your first QML app with Qiskit.',
   keywords: ['Quantum Machine Learning', 'QML', 'Qubits', 'Qiskit', 'Quantum Neural Networks', 'AI Future'],
 };
 
 export default function QuantumMlBlog() {
+  const { currentTheme: theme } = useTheme();
   return (
     <article className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8 mt-20">
       <JsonLdArticle

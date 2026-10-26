@@ -1,9 +1,11 @@
+'use client';
 // app/blog/web-performance-optimization/page.tsx
+import { useTheme } from '@/components/providers/ThemeProvider';
 import JsonLdArticle from '@/components/JsonLdArticle';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Web Performance Optimization: Core Web Vitals and Beyond | DevMetrix',
   description: 'Boost your website speed with lazy loading, code splitting, caching strategies, and Core Web Vitals optimization. Security implications included.',
   keywords: ['web performance', 'core web vitals', 'page speed', 'lazy loading', 'code splitting', 'performance security'],
@@ -17,8 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default function WebPerformanceGuide() {
+  const { currentTheme: theme } = useTheme();
   return (
-    <article className="min-h-screen bg-black pt-24 pb-20 px-4">
+    <article className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Web Performance Optimization: Core Web Vitals and Beyond"
         description="Boost your website speed with lazy loading, code splitting, caching strategies, and Core Web Vitals optimization."

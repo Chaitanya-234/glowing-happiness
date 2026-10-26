@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 import AdContainer from '@/components/AdContainer';
 import JsonLdArticle from '@/components/JsonLdArticle';
@@ -49,6 +50,7 @@ const checklistItems: string[] = [
 ];
 
 export default function MultimodalAiPost() {
+  const { currentTheme: theme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>('intro');
   const [checklist, setChecklist] = useState<Record<number, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -89,7 +91,7 @@ export default function MultimodalAiPost() {
   const completedItems = Object.values(checklist).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-[#050505] text-gray-200 font-sans selection:bg-orange-500/30 selection:text-orange-100">
+    <div className={`min-h-screen ${theme.colors.background} pt-24 pb-20 px-4 transition-colors duration-300`}>
       <JsonLdArticle
         headline="Beyond Text: How Multimodal AI is Creating a New Era of Human-Computer Interaction"
         description="Multimodal AI is creating a new era of Human-Computer Interaction. Learn how Vision-Language Models process images and text to transform industries."
@@ -99,7 +101,7 @@ export default function MultimodalAiPost() {
       />
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-900 z-[100]">
+      <div className="fixed top-0 left-0 w-full h-1  z-[100]">
         <motion.div
           className="h-full bg-gradient-to-r from-yellow-500 via-orange-500 to-pink-600"
           style={{ width: `${progress}%` }}
@@ -159,7 +161,7 @@ export default function MultimodalAiPost() {
               <span>MULTIMODAL IQ</span>
               <span>{Math.round((completedItems / checklistItems.length) * 100)}%</span>
             </div>
-            <div className="h-1.5 bg-gray-900 rounded-full overflow-hidden">
+            <div className="h-1.5  rounded-full overflow-hidden">
               <motion.div
                 className="h-full bg-gradient-to-r from-yellow-500 to-orange-600"
                 initial={{ width: 0 }}
@@ -239,17 +241,17 @@ export default function MultimodalAiPost() {
                       In the past, we had separate models for separate tasks:
                     </p>
                     <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4 list-none pl-0 my-8">
-                       <li className="bg-gray-900 p-4 rounded-xl border border-gray-800 text-center">
+                       <li className=" p-4 rounded-xl border border-gray-800 text-center">
                           <ImageIcon className="text-blue-400 mx-auto mb-2" />
                           <span className="block text-white font-bold">CNNs</span>
                           <span className="text-xs text-gray-500">For Images Only</span>
                        </li>
-                       <li className="bg-gray-900 p-4 rounded-xl border border-gray-800 text-center">
+                       <li className=" p-4 rounded-xl border border-gray-800 text-center">
                           <Brain className="text-green-400 mx-auto mb-2" />
                           <span className="block text-white font-bold">LSTMs/Transformers</span>
                           <span className="text-xs text-gray-500">For Text Only</span>
                        </li>
-                        <li className="bg-gray-900 p-4 rounded-xl border border-gray-800 text-center">
+                        <li className=" p-4 rounded-xl border border-gray-800 text-center">
                           <Mic className="text-pink-400 mx-auto mb-2" />
                           <span className="block text-white font-bold">Wav2Vec</span>
                           <span className="text-xs text-gray-500">For Audio Only</span>
@@ -283,15 +285,15 @@ export default function MultimodalAiPost() {
 
                    <h3 className="text-orange-200 font-bold mt-6">The Architecture</h3>
                    <ul className="space-y-4 list-none pl-0">
-                      <li className="flex gap-4 p-4 bg-black/40 rounded-lg border border-orange-500/10">
+                      <li className="flex gap-4 p-4 /40 rounded-lg border border-orange-500/10">
                          <strong className="text-orange-400 min-w-[120px]">1. Visual Encoder</strong>
                          <span>Usually a Vision Transformer (ViT) that breaks an image into patches (like puzzle pieces) and turns them into vectors.</span>
                       </li>
-                      <li className="flex gap-4 p-4 bg-black/40 rounded-lg border border-orange-500/10">
+                      <li className="flex gap-4 p-4 /40 rounded-lg border border-orange-500/10">
                          <strong className="text-orange-400 min-w-[120px]">2. The Bridge</strong>
                          <span>A projection layer (like a Q-Former or simple Linear layer) that translates &quot;visual vectors&quot; into &quot;language vectors.&quot; It teaches the LLM that the vector for a curved yellow shape equals the word &quot;banana.&quot;</span>
                       </li>
-                      <li className="flex gap-4 p-4 bg-black/40 rounded-lg border border-orange-500/10">
+                      <li className="flex gap-4 p-4 /40 rounded-lg border border-orange-500/10">
                          <strong className="text-orange-400 min-w-[120px]">3. LLM Backbone</strong>
                          <span>A powerful language model (like Llama 3 or GPT-4) that takes these translated visual tokens and reasons about them.</span>
                       </li>
@@ -325,7 +327,7 @@ export default function MultimodalAiPost() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  {/* Healthcare */}
-                 <div className="group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-pink-500 transition-all duration-300">
+                 <div className="group relative overflow-hidden rounded-2xl  border border-gray-800 hover:border-pink-500 transition-all duration-300">
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-pink-900/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="p-8 relative z-10">
                        <Activity className="text-pink-400 mb-4" size={32} />
@@ -337,7 +339,7 @@ export default function MultimodalAiPost() {
                  </div>
 
                  {/* E-commerce */}
-                 <div className="group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-yellow-500 transition-all duration-300">
+                 <div className="group relative overflow-hidden rounded-2xl  border border-gray-800 hover:border-yellow-500 transition-all duration-300">
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-yellow-900/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="p-8 relative z-10">
                        <ShoppingCart className="text-yellow-400 mb-4" size={32} />
@@ -349,7 +351,7 @@ export default function MultimodalAiPost() {
                  </div>
 
                  {/* Education */}
-                 <div className="group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-blue-500 transition-all duration-300">
+                 <div className="group relative overflow-hidden rounded-2xl  border border-gray-800 hover:border-blue-500 transition-all duration-300">
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-blue-900/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="p-8 relative z-10">
                        <Brain className="text-blue-400 mb-4" size={32} />
@@ -361,7 +363,7 @@ export default function MultimodalAiPost() {
                  </div>
 
                  {/* Accessibility */}
-                 <div className="group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-green-500 transition-all duration-300">
+                 <div className="group relative overflow-hidden rounded-2xl  border border-gray-800 hover:border-green-500 transition-all duration-300">
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-green-900/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="p-8 relative z-10">
                        <Eye className="text-green-400 mb-4" size={32} />
@@ -450,7 +452,7 @@ export default function MultimodalAiPost() {
                     className={`flex items-start gap-3 p-4 rounded-lg transition-all text-left border ${
                       checklist[idx]
                         ? 'bg-orange-900/40 border-orange-500/50'
-                        : 'bg-black/40 border-gray-800 hover:border-orange-500/30'
+                        : '/40 border-gray-800 hover:border-orange-500/30'
                     }`}
                   >
                     {checklist[idx] ? (
@@ -469,7 +471,7 @@ export default function MultimodalAiPost() {
 
           {/* Conclusion */}
           <section className="mb-16 border-t border-orange-900/50 pt-12">
-            <div className="bg-black/50 border border-orange-500/30 rounded-xl p-10 text-center relative overflow-hidden">
+            <div className="/50 border border-orange-500/30 rounded-xl p-10 text-center relative overflow-hidden">
                <div className="absolute inset-0 bg-orange-500/5 z-0"></div>
               <h2 className="text-3xl font-bold text-white mb-4 relative z-10">See the Future</h2>
               <p className="text-gray-400 mb-8 max-w-2xl mx-auto relative z-10">
@@ -485,7 +487,7 @@ export default function MultimodalAiPost() {
                 </Link>
                 <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 px-8 py-4 rounded-full font-bold transition-all text-white border border-gray-700"
+                    className="inline-flex items-center gap-2  hover: px-8 py-4 rounded-full font-bold transition-all text-white border border-gray-700"
                 >
                     Read More Articles <ArrowRight size={20} />
                 </Link>
